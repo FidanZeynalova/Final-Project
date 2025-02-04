@@ -3,12 +3,14 @@ const app = express()
 const cors = require("cors")
 const dotenv = require("dotenv")
 const route = require("./routes/RecipesRoutes")
+const router = require("./routes/UserRoutes.js")
 
 app.use(cors())
 app.use(express.json())
 dotenv.config()
 
 app.use("/recipes", route)
+app.use("/users", router)
 require("./config/Config.js")
 
 
