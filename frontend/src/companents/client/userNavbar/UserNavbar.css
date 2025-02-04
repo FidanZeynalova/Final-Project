@@ -1,0 +1,119 @@
+.Navbar {
+    position: fixed; /* Navbar sabitləndi */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  
+    .navbarContainer {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+  
+    .navbarLogo img {
+      width: 250px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  
+    /* Naviqasiya siyahısı */
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .nav-list button {
+      border: 1px solid #1c1c16;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  
+    /* Naviqasiya siyahısının elementləri */
+    .navbarList {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  
+    /* Mobil görünüşdə olan bar iconu */
+    .barLinks {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+  
+    /* Bar iconuna klik edəndə açılan dropdown siyahısı */
+    .navbarBarsList {
+      position: absolute;
+      top: 30px;
+      background-color: #1c1c16;
+      border-radius: 5px;
+      padding: 10px;
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .navbarBarsList li {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.278);
+    }
+  
+    /* Menu siyahısındakı elementlər */
+    .menu li {
+      font-size: 17px;
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.278);
+    }
+  }
+  /* Mobil cihazlar (telefonlar) üçün responsiv */
+  @media (max-width: 576px) {
+    .Navbar .navbarLogo img {
+      width: 130px !important;
+    }
+  
+    .Navbar .navbarList {
+      display: none !important;
+    }
+  
+    .Navbar .barsIcons {
+      display: flex !important;
+    }
+  }
+  /* Light və Dark mod üçün navbar arxa fon rəngləri */
+  .Navbar.light-mode {
+    background-color: #fefff4;
+  }
+  
+  .Navbar.dark-mode {
+    background-color: black;
+  }
+  
+  /* Mini-tablet üçün responsiv (576px-768px)   */
+  @media (min-width: 576px) and (max-width: 768px) {
+    .Navbar .navbarList {
+      display: none !important;
+    }
+  
+    .Navbar .barsIcons {
+      display: flex !important;
+    }
+  }
+  
+  /* Tablet üçün responsiv (768px-992px)   */
+  @media (min-width: 768px) and (max-width: 992px) {
+    .Navbar .navbarList {
+      display: none !important;
+    }
+  
+    .Navbar .barsIcons {
+      display: flex !important;
+    }
+  }
+  

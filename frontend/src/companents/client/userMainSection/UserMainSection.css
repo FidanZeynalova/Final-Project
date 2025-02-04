@@ -1,0 +1,39 @@
+.MainDish {
+    .MainDishContainer {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0px auto;
+      .dishesWrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        .Dishes {
+          cursor: pointer;
+        }
+      }
+    }
+  
+    /* Mobil cihazlar (telefonlar) üçün responsiv */
+    @media (max-width: 576px) {
+      .dishesWrapper {
+        grid-template-columns: repeat(1, 1fr) !important;
+      }
+    }
+  
+    /* Mini  tabletlər üçün responsiv */
+    @media (min-width: 576px) and (max-width: 768px) {
+      .dishesWrapper {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+  
+    /* Tabletlər üçün responsiv */
+    @media (min-width: 768px) and (max-width: 992px) {
+      .dishesWrapper {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+  }
+  
