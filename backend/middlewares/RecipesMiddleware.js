@@ -1,13 +1,14 @@
-const checkRecipeData = (req, res, next) => {
-    const { title, author, prepTime, cookTime, totalTime, servings, calories, ingredients, instructions } = req.body;
+const RecipesValidationSchema = require("../validations/RecipesValidations");
 
-    if (!title || !author || !prepTime || !cookTime || !totalTime || !servings || !calories || !ingredients || !instructions) {
-        return res.status(400).send({
-            message: "Bütün məlumatlar tələb olunur!",
-        });
+
+
+const checkRecipesMiddleware = (req, res, next) => {
+    let {error} = RecipesValidationSchema.validate(req.body)
+    if (!error) {
+        res.send(error.details[0].message)
+    }else{
+        next()
     }
-
-    next(); 
 };
 
-module.exports = checkRecipeData;
+module.exports = checkRecipesMiddleware;
