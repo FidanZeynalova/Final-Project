@@ -1,7 +1,7 @@
 import React from 'react'
-import AdminNavbar from '../../companents/admin/adminNavbar/adminNavbar'
 import { Outlet } from "react-router"
-import AdminFooter from '../../companents/admin/adminFooter/adminFooter'
+import AdminNavbar from '../../companents/admin/adminNavbar/adminNavbar'
+import AdminFooter from '../../companents/admin/adminFooter/AdminFooter'
 
 function AdminRoot() {
     return (

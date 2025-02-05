@@ -5,7 +5,7 @@ export const ThemeContext = createContext()
 
 function ThemeContextProvider({ children }) {
     let themeMood = localStorage.getItem("mood")
-    let [light, setLight] = useState(themeMood ? JSON.parse(themeMood) : true)
+    let [light, setLight] = useState(themeMood ? JSON.parse(themeMood) : false)
 
     useEffect(() => {
         localStorage.setItem('mood', JSON.stringify(light));

@@ -16,6 +16,8 @@ import AdminUser from "../pages/admin/adminUsers/AdminUser";
 import UserRecipeCollections from "../pages/client/userRecipeCollections/UserRecipeCollections";
 import UserTacosRecipes from "../pages/client/userTacosRecipes/UserTacosRecipes";
 import UserCookBook from "../pages/client/UserCookBook/UserCookBook";
+import AdminLogin from "../pages/admin/adminLogin/adminLogin";
+import AdminLoginRoot from "../pages/admin/AdminLoginRoot";
 
 
 
@@ -81,11 +83,11 @@ export const ROUTES = [
         ]
     },
     {
-        path: "/admin",
+        path: "/admin/login",
         element: <AdminRoot />,
         children: [
             {
-                path: "",
+                path: "dashboard",
                 element: <AdminDashboard />
             },
             {
@@ -97,5 +99,10 @@ export const ROUTES = [
                 element: <AdminUser />
             }
         ]
+    },
+    {
+        path: "/admin",
+        element: <AdminLoginRoot />,
     }
+    
 ]
