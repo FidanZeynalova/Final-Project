@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     z-index: 3;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   
     .navbarContainer {
       width: 70%;
@@ -92,7 +92,7 @@
   }
   
   .Navbar.dark-mode {
-    background-color: black;
+    background-color: #0F1620;
   }
   
   /* Mini-tablet üçün responsiv (576px-768px)   */

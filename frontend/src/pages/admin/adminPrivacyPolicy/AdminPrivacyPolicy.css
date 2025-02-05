@@ -1,0 +1,25 @@
+.PrivacyPlicy {
+  background-color: #5f5e4a;
+  .PrivacyPlicyContainer {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+    .PrivacyPlicyInfo {
+        padding: 40px 0;
+      color: #fefff4;
+      width: 100%;
+       display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .texts {
+      font-size: 20px;
+    }
+  }
+}
+.PrivacyPlicy.dark-mode{
+    background-color: transparent;
+    color: #5f5e4a;
+}

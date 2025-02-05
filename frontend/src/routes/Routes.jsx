@@ -18,6 +18,7 @@ import UserTacosRecipes from "../pages/client/userTacosRecipes/UserTacosRecipes"
 import UserCookBook from "../pages/client/UserCookBook/UserCookBook";
 import AdminLogin from "../pages/admin/adminLogin/adminLogin";
 import AdminLoginRoot from "../pages/admin/AdminLoginRoot";
+import AdminPrivacyPolicy from "../pages/admin/adminPrivacyPolicy/AdminPrivacyPolicy";
 
 
 
@@ -77,6 +78,10 @@ export const ROUTES = [
                 element: <UserCookBook />
             },
             {
+                path: "/privacy",
+                element: <AdminPrivacyPolicy />
+            },
+            {
                 path: "*",
                 element: <UserNotFound />
             }
@@ -103,6 +108,12 @@ export const ROUTES = [
     {
         path: "/admin",
         element: <AdminLoginRoot />,
+        children:[
+            {
+                path:"",
+                element:<AdminLogin/>
+            }
+        ]
     }
     
 ]

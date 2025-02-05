@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react'
 import "../adminLogin/AdminLogin.css"
 import { Helmet } from 'react-helmet'
-import logo from "../../../assets/logo.svg"
 import { RememberMeContext } from '../../../context/RememberMe';
 import Swal from "sweetalert2"
 import { NavLink } from 'react-router';
+import { useContext, useState } from "react";
 
 
 function AdminLogin() {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const { username, login } = useContext(RememberMeContext);
+    const { username, login } = useContext
+    (RememberMeContext);
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [userInput, setUserInput] = useState(username);
@@ -36,9 +36,6 @@ function AdminLogin() {
             </Helmet>
             <div className="AdminLogin">
                 <div className="AdminLoginContainer">
-                    <div className="logo">
-                        <img src={logo} alt="" />
-                    </div>
                     <form className="AdminLoginForm" onSubmit={handleSubmit}>
                         <div className="loginInput">
                             <label htmlFor="nameOrEmail">Username or Email Address</label>
@@ -81,13 +78,11 @@ function AdminLogin() {
             <p><NavLink style={{color:"black",opacity:".6"}}>← Go to Half Baked Harvest</NavLink></p>
         </div>
 
-        <div className="PrivacyPolicy">
-            <span><NavLink style={{color:"#5f5e4a",textDecoration:"underline"}}>Privacy Policy and Official Sweepstakes Rules</NavLink></span>
-        </div>
+      
                 </div>
             </div>
         </>
     )
 }
 
-export default AdminLogin
+export default AdminLogin  

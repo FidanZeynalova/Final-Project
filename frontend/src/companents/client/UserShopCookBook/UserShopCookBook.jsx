@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CookBook from "../../../assets/CookBook.webp";
 import "../UserShopCookBook/UserShopCookBook.css"
 import { NavLink } from 'react-router-dom';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 
 function UserShopCookBook() {
+    let {light} = useContext(ThemeContext)
     return (
-        <div className='shop-cookbook-section'>
-            <div className="cookbook-container">
+        <div className={`shop-cookbook-section ${light ? "dark-mode" : "light-mode"}`}>
+            <div className={`cookbook-container`}>
                 <div className="cookbook-image"  >
                     <NavLink to={"cookbook"} > <img src={CookBook} alt="Cookbook Cover" style={{ cursor: "pointer" }} /></NavLink>
                 </div>
@@ -18,7 +20,7 @@ function UserShopCookBook() {
                         Join Tieghan Gerard for the exciting launch of her newest cookbook, Half Baked Harvest Quick & Cozy.
                     </span>
                     <div className="cookbook-buttons">
-                        <NavLink to={"cookbook"} > <button className="btn-shop">Shop Cookbooks</button></NavLink>
+                        <NavLink to={"/cookbook"} > <button className="btn-shop">Shop Cookbooks</button></NavLink>
                         <button className="btn-shop-signed">Shop Signed Cookbook</button>
                     </div>
                 </div>

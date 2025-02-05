@@ -1,0 +1,19 @@
+.AdminLoginNavbar{
+  background-color: #f0f0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto;
+    .logo{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px auto;
+        padding: 50px 0;
+        img{
+            width: 50%;
+        }
+    }
+    
+}
