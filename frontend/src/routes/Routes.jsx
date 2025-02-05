@@ -84,7 +84,7 @@ export const ROUTES = [
     },
     {
         path: "/admin/login",
-        element: <AdminRoot />,
+        element: <AdminRoot/>,
         children: [
             {
                 path: "dashboard",
