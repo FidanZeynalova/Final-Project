@@ -10,6 +10,7 @@ route.get("/:id", RecipeController.getRecipeById)
 route.post("/", checkRecipesMiddleware, RecipeController.addRecipe)
 route.delete("/:id", RecipeController.deleteRecipeById)
 route.put("/:id", RecipeController.editRecipeById)
+// route.post("/:id/rate", RecipeController.rateRecipe);  
 
 
 module.exports = route

@@ -12,6 +12,12 @@ const RecipesValidationSchema = Joi.object({
     instructions: Joi.array().items(Joi.string()).required(),
     image: Joi.string().uri().optional(),
     createdAt: Joi.date().timestamp().required(),
+    // ratings: Joi.array().items(
+    //     Joi.object({
+    //         userId: Joi.string().required(), // İstifadəçi ID-si
+    //         stars: Joi.number().integer().min(1).max(5).required() // Ulduz sayı (1-5)
+    //     })
+    // ).optional()
 });
 
 module.exports = RecipesValidationSchema

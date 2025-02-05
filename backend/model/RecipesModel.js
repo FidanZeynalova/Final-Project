@@ -12,6 +12,12 @@ const RecipeSchema = new mongoose.Schema({
   instructions: [{ type: String, required: true }], // Hazırlanma qaydası (array şəklində)
   image: String, // Reseptin şəkli
   createdAt: { type: Date, default: Date.now }, // Tarix
+  ratings: [
+    {
+      userId: String, // Reytinq verən istifadəçinin ID-si
+      stars: Number, // İstifadəçinin verdiyi ulduz sayı (1-5)
+    }
+  ]
 });
 
 const RecipeModel = mongoose.model("recipes", RecipeSchema)

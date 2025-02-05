@@ -7,7 +7,8 @@ const UserSchema = new mongoose.Schema({
   gender: { type: String, enum: ["male", "female"], required: true }, //qadın ya da kişi olub-olmaması
   email: { type: String, required: true, unique: true },//email-i
   password: { type: String, required: true },// parolu
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "recipes" }],// sevdiyi yemək reseptləri
+  confirmPassword: { type: Number, required: true },// təsdiq parolu
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "recipes" }], // sevdiyi yemək reseptləri
   createdAt: { type: Date, default: Date.now } //Qeydiyyatdan keçdiyi tarix
 });
 

@@ -63,6 +63,53 @@ const RecipeController = {
             res.status(500).send({ message: "Error updating recipe", error: error.message });
         }
     },
+
+    // Reytinq əlavə etmək və ya yeniləmək
+    // rateRecipe: async (req, res) => {
+    //     try {
+    //         let { id } = req.params; // Reseptin ID-si
+    //         let { userId, stars } = req.body; // İstifadəçinin ID-si və verdiyi ulduz sayı
+
+    //         if (!userId || !stars) {
+    //             return res.status(400).send({ message: "User ID and stars are required" });
+    //         }
+
+    //         if (stars < 1 || stars > 5) {
+    //             return res.status(400).send({ message: "Stars must be between 1 and 5" });
+    //         }
+
+    //         let recipe = await RecipeModel.findById(id);
+    //         if (!recipe) {
+    //             return res.status(404).send({ message: "Recipe not found" });
+    //         }
+
+    //         // İstifadəçinin daha əvvəl ulduz verib-vermədiyini yoxla
+    //         let existingRating = recipe.ratings.find(r => r.userId === userId);
+
+    //         if (existingRating) {
+    //             // Əgər istifadəçi artıq ulduz veribsə, yenilə
+    //             existingRating.stars = stars;
+    //         } else {
+    //             // Yeni ulduz əlavə et
+    //             recipe.ratings.push({ userId, stars });
+    //         }
+
+    //         // Ortalaması hesablamaq üçün bütün ulduzları topla və sayına böl (ortalamasını götürmək üçün)
+    //         let totalStars = recipe.ratings.reduce((sum, r) => sum + r.stars, 0);
+    //         let averageRating = totalStars / recipe.ratings.length;
+
+    //         // Resepti yenilə
+    //         await recipe.save();
+
+    //         res.send({
+    //             message: "Success! Rating updated",
+    //             averageRating: averageRating.toFixed(1), // yuvarlaqlaşdırır
+    //             ratings: recipe.ratings
+    //         });
+    //     } catch (error) {
+    //         res.status(500).send({ message: "Error rating recipe", error: error.message });
+    //     }
+    // }
 };
 
 module.exports = RecipeController;
