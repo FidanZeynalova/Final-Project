@@ -35,6 +35,7 @@
   @media (max-width: 576px) {
     h1 {
       font-size: 30px !important;
+      text-align: center;
     }
     .CookBookContainerHead {
       width: 90%;
@@ -47,6 +48,9 @@
   }
 
   @media (min-width: 576px) and (max-width: 768px) {
+    h1{
+      text-align: center;
+    }
     .CookBookContainerHead {
       width: 90%;
       flex-direction: column !important;
@@ -58,9 +62,11 @@
   }
 
   @media (min-width: 768px) and (max-width: 992px) {
+    h1{
+      text-align: center;
+    }
     .CookBookContainerHead {
-      width: 90%;
-      flex-direction: column !important;
+      width: 90%; 
       text-align: center;
     }
     .CookBookWrapper {

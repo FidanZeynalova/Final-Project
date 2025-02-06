@@ -4,6 +4,7 @@ import "../UserCookBook/UserCookBook.css"
 import CookBook1 from "../../../assets/CookBook1.webp"
 import CookBook2 from "../../../assets/CookBook2.webp"
 import CookBook3 from "../../../assets/CookBook3.jpg"
+import CookBook4 from "../../../assets/CookBook4.webp"
 import CookBookSalat from "../../../assets/CookBookSalat.jpeg"
 import CookBookDrink from "../../../assets/CookBookDrink.webp"
 import CookBookCake from "../../../assets/CookBookCake.webp"
@@ -74,7 +75,7 @@ function UserCookBook() {
 
               }}
             >
-              CookBooks
+              More Cookbooks from Half Baked Harvest
             </h1>
           </div>
           <div className="CookBookContainerHead" style={{ gap: "40px" }}>
@@ -94,6 +95,15 @@ function UserCookBook() {
             </div>
             <div className="left">
               <img src={CookBook3} alt="" />
+            </div>
+          </div>
+          <div className="CookBookContainerHead"  style={{ gap: "40px" }}>
+            <div className="left">
+              <img src={CookBook4} alt="" />
+            </div>
+            <div className="right">
+              <h1>Half Baked Harvest Cookbook</h1>
+              <p>What I love most about this cookbook is that there is a little something for everyone. Everything from the super healthy to the super indulgent, to everyday easy dinners, to weekend pastas that are worth the extra time! Count on finding plenty of easy crockpot recipes along with recipes that take just thirty minutes start to finish! There are plenty of breakfast options, appetizers to please a crowd, pasta and pizza galore, and even some veggie heavy recipes. And yes, there’s an entire chapter on desserts. Some are a chocolate lovers dream, some are super fruity and a handful are even healthy…ish. <br /><br /> The Half Baked Harvest cookbook is truly a reflection of what you see on the blog. The recipes in the cookbook are the best of the BEST, my most favorite creations. Recipes I have saved on my computer over the last four years for when the time came to put them into a cookbook. These recipes are what I am calling the HBH creme de la crumb recipes, they are my most treasured recipes. With each recipe there is also a photo, and for some recipes there even two. As you guys know, I LOVE photos and one of the most important things to me was that each recipe have at least one beautiful photo to accompany it!</p>
             </div>
           </div>
         </div>
