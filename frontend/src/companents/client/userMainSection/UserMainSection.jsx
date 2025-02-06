@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import "../userMainSection/UserMainSection.css"
-import main from "../../../assets/main.webp"
-import tacos from "../../../assets/tacos.webp"
-import winterDrinks from "../../../assets/winterDrinks.webp"
-import healthier from "../../../assets/healthier.png"
+import main from "../../../assets/main.jpg"
+import tacos from "../../../assets/tacos.jpg"
+import winterDrink from "../../../assets/winterDrink.jpg"
+import healthier from "../../../assets/healthier.jpg"
 
 
 function UserMainSection() {
@@ -12,21 +12,34 @@ function UserMainSection() {
         <div className='MainDish'>
             <div className="MainDishContainer">
                 <div className="dishesWrapper">
-                    <div className="Dishes">
-                        <NavLink to={"recipes"} > <img src={main} alt="main" /></NavLink>
-                    </div>
-                    <div className="Dishes">
-                        <NavLink to={"tacosRecipes"} > <img src={tacos} alt="tacos" /></NavLink>
-                    </div>
-                    <div className="Dishes">
-                        <NavLink to={"drinkRecipes"} > <img src={winterDrinks} alt="drink" /></NavLink>
-                    </div>
-                    <div className="Dishes">
-                        <NavLink to={"healthierRecipes"} > <img src={healthier} alt="healthier" /></NavLink>
-                    </div>
+                    <NavLink to={"recipes"} > <div className="Dishes" style={{ position: "relative" }}>
+                        <img src={main} alt="main" />
+                        <div className="text" style={{ position: "absolute", bottom: "0%", left: "50%", transform: "translate(-50%,-50%)", backgroundColor: "#5F5E4A", padding: "10px 20px", color: "#FEFFF4", width: "50%" }}>
+                            <span style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto", fontSize: "20px" }}> Main Dish</span>
+                        </div>
+                    </div></NavLink>
+                    <NavLink to={"tacosRecipes"} > <div className="Dishes" style={{ position: "relative" }}>
+                        <img src={tacos} alt="tacos" />
+                        <div className="text" style={{ position: "absolute", bottom: "0%", left: "50%", transform: "translate(-50%,-50%)", backgroundColor: "#5F5E4A", padding: "10px 20px", color: "#FEFFF4", width: "50%" }}>
+                            <span style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto", fontSize: "20px" }}> Tacos</span>
+                        </div>
+                    </div></NavLink>
+                    <NavLink to={"drinkRecipes"} >   <div className="Dishes" style={{ position: "relative" }}>
+                        <img src={winterDrink} alt="drink" />
+                        <div className="text" style={{ position: "absolute", bottom: "0%", left: "50%", transform: "translate(-50%,-50%)", backgroundColor: "#5F5E4A", padding: "10px 20px", color: "#FEFFF4", width: "50%" }}>
+                            <span style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto", fontSize: "20px" }}> Drinks</span>
+                        </div>
+                    </div></NavLink>
+                    <NavLink to={"healthierRecipes"} >
+                        <div className="Dishes" style={{ position: "relative" }}>
+                            <img src={healthier} alt="healthier" />
+                            <div className="text" style={{ position: "absolute", bottom: "0%", left: "50%", transform: "translate(-50%,-50%)", backgroundColor: "#5F5E4A", padding: "10px 20px", color: "#FEFFF4", width: "50%" }}>
+                                <span style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto", fontSize: "20px" }}>Healthier </span>
+                            </div>
+                        </div></NavLink>
                 </div>
             </div>
-        </div>
+        </div >
     )
 
 }
