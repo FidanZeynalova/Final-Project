@@ -30,9 +30,6 @@ li {
 a {
   text-decoration: none;
   transition: all .3s ease;
-  &:hover{
-    opacity: .8;
-  }
 }
 
 /* Input və button  */

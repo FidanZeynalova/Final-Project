@@ -1,0 +1,81 @@
+.UserLogin {
+  .UserLoginContainer {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+    flex-direction: column;
+    .UserLoginInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0px auto;
+      font-size: 20px;
+      text-align: center;
+    }
+    a {
+      color: #a39161;
+      border-bottom: 1px solid #a39161;
+      font-size: 20px;
+      &:hover {
+        border-bottom: 1px solid #a391613d;
+      }
+    }
+    .UserLoginForm {
+      position: relative;
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0px auto;
+      font-size: 20px;
+      gap: 20px;
+      .input {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        input {
+          border-radius: 5px;
+          padding: 10px;
+          background-color: white;
+          border: 1px solid rgba(128, 128, 128, 0.472);
+          &:focus {
+            outline: none;
+            border: 1px solid #4c4a35;
+          }
+        }
+      }
+      button {
+        width: 20%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: -50px auto;
+        background-color: #4c4a35;
+        padding: 10px 20px;
+        color: white;
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    span {
+      text-align: center;
+    }
+    button {
+      width: 100% !important;
+    }
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    button {
+      width: 50% !important;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    button {
+      width: 50% !important;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+.UserRegister {
+  .UserRegisterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+    width: 70%;
+    .UserRegisterInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      a {
+        color: #a39161;
+        border-bottom: 1px solid #a39161;
+        font-size: 20px;
+        &:hover {
+          border-bottom: 1px solid #a391613d;
+        }
+      }
+    }
+    .Register {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0px auto;
+      .info {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        p {
+          line-height: 1.5;
+          font-size: 20px;
+        }
+      }
+      form {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px auto;
+        gap: 20px;
+        flex-direction: column;
+        .nameInput,
+        .passWordInputs {
+          width: 100%;
+          gap: 60px;
+          display: flex;
+          align-items: center;
+        }
+        .input {
+          width: 100%;
+          input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid rgba(128, 128, 128, 0.152);
+            background-color: white;
+            &:focus {
+              outline: none;
+              border: 1px solid #4c4a35;
+            }
+          }
+        }
+        button {
+          background-color: #4c4a35;
+          padding: 15px 20px;
+          color: white;
+        }
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    form {
+      flex-direction: column !important;
+      .nameInput,
+      .passWordInputs {
+        flex-direction: column !important;
+      }
+    }
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    form {
+      flex-direction: column !important;
+      .nameInput,
+      .passWordInputs {
+        flex-direction: column !important;
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    button {
+      width: 50% !important;
+    }
+  }
+}
