@@ -97,9 +97,15 @@ function UserFooter() {
           </div>
         </div>
       </div>
-      <div className={`Footer ${light ? 'dark-mode' : 'light-mode'}`} style={{ position: "fixed", right: "20px", bottom: "30px" }}>
+      <div className="Footer" style={{ position: "fixed", right: "20px", bottom: "30px",
+        
+         }}>
         <button
-          style={{ fontSize: "30px", borderRadius: "50%", padding: "10px 15px" }}
+          style={{ fontSize: "30px", borderRadius: "50%", padding: "10px 15px",
+            color: light ? "#5F5E4A" : "#FEFFF4",
+            backgroundColor: light ? "#FEFFF4" : "#5F5E4A",
+            border : light ? "#5F5E4A" : "#FEFFF4"
+           }}
           onClick={scrollToTop}
         >
           <FaAngleDoubleUp />

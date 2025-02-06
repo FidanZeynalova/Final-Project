@@ -86,14 +86,6 @@
       display: flex !important;
     }
   }
-  /* Light və Dark mod üçün navbar arxa fon rəngləri */
-  .Navbar.light-mode {
-    background-color: #fefff4;
-  }
-  
-  .Navbar.dark-mode {
-    background-color: #0F1620;
-  }
   
   /* Mini-tablet üçün responsiv (576px-768px)   */
   @media (min-width: 576px) and (max-width: 768px) {

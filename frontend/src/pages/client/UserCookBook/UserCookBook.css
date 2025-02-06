@@ -1,0 +1,50 @@
+.UserCookBook {
+  .UserCookBookContainer {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px auto;
+    padding: 20px 0;
+    .left {
+      width: 100%;
+    }
+    .right {
+      width: 100%;
+      color: #ddd6c5;
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 576px) {
+    h1{
+      font-size: 30px !important;
+    }
+    .UserCookBookContainer {
+      width: 90%;
+      flex-direction: column !important;
+      text-align: center;
+      .left{
+        width: 100% !important;
+      }
+      .right{
+        width: 100%;
+      }
+    }
+  }
+
+  @media (min-width:576px) and (max-width: 768px) {
+    .UserCookBookContainer {
+      width: 90%;
+      flex-direction: column !important;
+      text-align: center;
+    }
+  }
+
+  @media (min-width:768px) and (max-width: 992px) {
+    .UserCookBookContainer {
+      width: 90%;
+      flex-direction: column !important;
+      text-align: center;
+    }
+  }
+}

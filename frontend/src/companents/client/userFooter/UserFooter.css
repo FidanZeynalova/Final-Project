@@ -1,138 +1,123 @@
 .Footer {
-    .footerContainer {
-      user-select: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-    }
-  
-    /* Footer üst hissəsi */
-    .footerSeen {
-      width: 70%;
-    }
-    .footerSeen .logos {
-      width: 100%;
-      display: grid;
-      align-items: center;
-      gap: 20px;
-      grid-template-columns: repeat(7, 1fr);
-    }
-  
-    .footerSeen .logos .logo {
-      width: 100%;
-      cursor: pointer;
-    }
-  
-    /* Footer alt hissəsi */
-    .footerEnd {
-      margin: 70px auto;
-      padding: 20px 0;
-      background-color: #5f5e4a;
-      width: 100%;
-    }
-  
-    .footerEnd .footer-end-container {
-      width: 70%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin: 0 auto;
-      color: white;
-    }
-  
-    .footerEnd .footer-end-container .footerDirection {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-  
-    .footerEnd .footer-end-container .footerDirection .direction {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .footerEnd .footer-end-container .footerDirection .direction .spans {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-  
-    .footerEnd .footer-end-container .footerDirection .direction .spans span {
-      cursor: pointer;
-      &:hover {
-        color: #494838;
-      }
-    }
-  
-    /* Footer img hissəsi */
-    .Footer .footerEnd .footerCenter {
-      width: 200px;
-    }
-  
-    /* Footer-da olan icon */
-  .Footer.light-mode button{
-    color: #FEFFF4;
-    background-color: #5F5E4A;
-    border: 1px solid #FEFFF4;
+  .footerContainer {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
-  
-  .Footer.dark-mode button{
-    color: #5F5E4A;
-    background-color: #FEFFF4;
-    border: 1px solid #5F5E4A;
-    
+
+  /* Footer üst hissəsi */
+  .footerSeen {
+    width: 70%;
   }
+  .footerSeen .logos {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    gap: 20px;
+    grid-template-columns: repeat(7, 1fr);
   }
-  
-  /* Mobil cihazlar (telefonlar) üçün responsiv */
-  @media (max-width: 576px) {
-    .Footer .footerSeen .logos {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-  
-    .Footer .footerEnd .footer-end-container {
-      flex-direction: column;
-    }
-  
-    .Footer .footerEnd .footer-end-container .footerDirection {
-      grid-template-columns: repeat(1, 1fr) !important;
+
+  .footerSeen .logos .logo {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  /* Footer alt hissəsi */
+  .footerEnd {
+    margin: 70px auto;
+    padding: 20px 0;
+    background-color: #5f5e4a;
+    width: 100%;
+  }
+
+  .footerEnd .footer-end-container {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    color: white;
+  }
+
+  .footerEnd .footer-end-container .footerDirection {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .footerEnd .footer-end-container .footerDirection .direction {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footerEnd .footer-end-container .footerDirection .direction .spans {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footerEnd .footer-end-container .footerDirection .direction .spans span {
+    cursor: pointer;
+    &:hover {
+      color: #494838;
     }
   }
-  
-  /* Mini-tablet üçün responsiv (576px-768px)   */
-  @media (min-width: 576px) and (max-width: 768px) {
-    .Footer .footerSeen .logos {
-      grid-template-columns: repeat(4, 1fr) !important;
-    }
-  
-    .Footer .footerEnd .footer-end-container {
-      flex-direction: column;
-      gap: 40px !important;
-    }
-  
-    .Footer .footerEnd .footer-end-container .footerDirection {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
+
+  /* Footer img hissəsi */
+  .Footer .footerEnd .footerCenter {
+    width: 200px;
   }
-  
-  /* Tablet üçün responsiv (768px-992px)   */
-  @media (min-width: 768px) and (max-width: 992px) {
-    .Footer .footerSeen .logos {
-      grid-template-columns: repeat(5, 1fr) !important;
-    }
-  
-    .Footer .footerEnd .footer-end-container {
-      flex-direction: column;
-    }
-  
-    .Footer .footerEnd .footer-end-container .footerDirection {
-      grid-template-columns: repeat(3, 1fr) !important;
-    }
+}
+
+/* Mobil cihazlar (telefonlar) üçün responsiv */
+@media (max-width: 576px) {
+  .Footer .footerSeen .logos {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
-  
+
+  .Footer .footerEnd .footer-end-container {
+    flex-direction: column;
+  }
+
+  .Footer .footerEnd .footer-end-container .footerDirection {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+/* Mini-tablet üçün responsiv (576px-768px)   */
+@media (min-width: 576px) and (max-width: 768px) {
+  .Footer .footerSeen .logos {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .Footer .footerEnd .footer-end-container {
+    flex-direction: column;
+    gap: 40px !important;
+  }
+
+  .Footer .footerEnd .footer-end-container .footerDirection {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Tablet üçün responsiv (768px-992px)   */
+@media (min-width: 768px) and (max-width: 992px) {
+  .Footer .footerSeen .logos {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+
+  .Footer .footerEnd .footer-end-container {
+    flex-direction: column;
+  }
+
+  .Footer .footerEnd .footer-end-container .footerDirection {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}

@@ -11,7 +11,7 @@ function UserNavbar() {
     let [menu, setMenu] = useState(false)
     let { light, setLight } = useContext(ThemeContext)
     return (
-        <div className={`Navbar ${light ? 'dark-mode' : 'light-mode'}`}>
+        <div className="Navbar" style={{backgroundColor: light ? "#0F1620" : "#fefff4"}}>
             <div className="navbarContainer">
                 <div className="navbarLogo">
                     <NavLink to="/" className="navbarLogo">
