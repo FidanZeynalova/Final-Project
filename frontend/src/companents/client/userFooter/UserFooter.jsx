@@ -16,6 +16,7 @@ import footerLogo12 from "../../../assets/footerLogo12.webp"
 import footerLogo13 from "../../../assets/footerLogo13.webp"
 import footerLogo14 from "../../../assets/footerLogo14.webp"
 import { ThemeContext } from '../../../context/ThemeContext';
+import { NavLink } from 'react-router-dom';
 
 
 function UserFooter() {
@@ -56,31 +57,22 @@ function UserFooter() {
               <div className="direction">
                 <h2>Company</h2>
                 <div className="spans">
-                  <span>Meet Tieghan</span>
-                  <span>Contact</span>
-                  <span>Partner With Us</span>
-                  <span>Press</span>
-                  <span>Official Sweepstakes Rules</span>
+                  <span><NavLink to={"subscribe"}>News Letter</NavLink></span>
+                  <span><NavLink to={"/"}>Half Baked Harvest</NavLink></span>
                 </div>
               </div>
               <div className="direction">
                 <h2>Explore</h2>
                 <div className="spans">
-                  <span>Recipe Index</span>
-                  <span>Latest Recipes</span>
-                  <span>Recipe Archives</span>
-                  <span>Kitchen Favorites</span>
-                  <span>Barns</span>
+                  <span><NavLink to={"/recipes"}>Recipe Index</NavLink></span>
+                  <span><NavLink to={"recipeCollections"}>My Recipes Archieve</NavLink></span>
                 </div>
               </div>
               <div className="direction">
-                <h2>Cookbooks</h2>
+                <h2>Account</h2>
                 <div className="spans">
-                  <span>HBH Quick & Cozy</span>
-                  <span>HBH Every Day</span>
-                  <span>Super Simple</span>
-                  <span>Half Baked Harvest</span>
-                  <span>Contact</span>
+                  <span><NavLink to={"/register"}> Create Account </NavLink></span>
+                  <span><NavLink to={"/login"} > Login Account </NavLink></span>
                 </div>
               </div>
             </div>

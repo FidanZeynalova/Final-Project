@@ -1,6 +1,5 @@
 import UserAccount from "../pages/client/userAccount/UserAccount";
 import UserDishDetail from "../pages/client/userDishDetail/UserDishDetail";
-import UserDrinkRecipes from "../pages/client/userDrinkRecipes/UserDrinkRecipes";
 import UserFavorites from "../pages/client/userFavorites/UserFavorites";
 import UserHealthierRecipes from "../pages/client/userHealthierRecipes/UserHealthierRecipes";
 import UserLogin from "../pages/client/userLogin/UserLogin";
@@ -34,7 +33,7 @@ export const ROUTES = [
                 element: <UserMain />
             },
             {
-                path: "/:id",
+                path: "/recipes/:id",
                 element: <UserDishDetail />
             },
             {
@@ -44,10 +43,6 @@ export const ROUTES = [
             {
                 path: "/register",
                 element: <UserAccount />
-            },
-            {
-                path: "/drinkRecipes",
-                element: <UserDrinkRecipes />
             },
             {
                 path: "/healthierRecipes",

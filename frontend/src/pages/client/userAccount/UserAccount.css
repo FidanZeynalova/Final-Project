@@ -43,8 +43,8 @@
         margin: 0px auto;
         gap: 20px;
         flex-direction: column;
-        .nameInput,
-        .passWordInputs {
+        .nameInputs,
+        .passwordInputs {
           width: 100%;
           gap: 60px;
           display: flex;

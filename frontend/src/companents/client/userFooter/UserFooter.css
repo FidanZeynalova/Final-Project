@@ -63,7 +63,8 @@
     gap: 15px;
   }
 
-  .footerEnd .footer-end-container .footerDirection .direction .spans span {
+  .footerEnd .footer-end-container .footerDirection .direction .spans a {
+    color: white;
     cursor: pointer;
     &:hover {
       color: #494838;
