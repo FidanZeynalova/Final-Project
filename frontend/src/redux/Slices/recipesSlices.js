@@ -38,7 +38,9 @@ export const recipesApi = createApi({
                     'Accept': 'application/json',
                 },
             }),
-        })
+            invalidatesTags: (result, error, { id }) => [{ type: 'Recipes', id }],
+        }),
+        
     }),
 })
 

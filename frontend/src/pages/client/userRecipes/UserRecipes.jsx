@@ -1,28 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import "../userRecipes/UserRecipes.css";
 import { NavLink } from "react-router-dom"
 import { useGetRecipesQuery } from '../../../redux/Slices/recipesSlices';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 function UserRecipes() {
-  let {getRecipes} = useGetRecipesQuery()
+  let {light} = useContext(ThemeContext)
+  let { data, isLoading } = useGetRecipesQuery()
 
 
-  const [searchValue, setSearchValue] = useState('');
-  const [typeOfMeal, setTypeOfMeal] = useState('');
-  const [byMethod, setByMethod] = useState('');
-  const [dietSpecific, setDietSpecific] = useState('');
-  const [holidays, setHolidays] = useState('');
-  const [drinks, setDrinks] = useState('');
-
-  const resetFilters = () => {
-    setSearchValue('');
-    setTypeOfMeal('');
-    setByMethod('');
-    setDietSpecific('');
-    setHolidays('');
-    setDrinks('');
-  };
 
   return (
     <div>
@@ -35,7 +22,7 @@ function UserRecipes() {
           <div className="UserRecipesSideBar">
             <div className="head">
               <h1>Filter Recipes</h1>
-              <span className="reset-button" onClick={resetFilters}>
+              <span className="reset-button">
                 Reset Filters
               </span>
             </div>
@@ -45,16 +32,12 @@ function UserRecipes() {
                 type="text"
                 className="search-input"
                 placeholder="Search Recipes..."
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
               />
             </div>
 
             <div className="dropdowns">
               <select
                 className="dropdown"
-                value={typeOfMeal}
-                onChange={(e) => setTypeOfMeal(e.target.value)}
               >
                 <option value="">Type of Meal</option>
                 <option value="Brunch">Brunch</option>
@@ -65,8 +48,6 @@ function UserRecipes() {
 
               <select
                 className="dropdown"
-                value={byMethod}
-                onChange={(e) => setByMethod(e.target.value)}
               >
                 <option value="">By Method</option>
                 <option value="Baking">Baking</option>
@@ -76,8 +57,6 @@ function UserRecipes() {
 
               <select
                 className="dropdown"
-                value={dietSpecific}
-                onChange={(e) => setDietSpecific(e.target.value)}
               >
                 <option value="">Diet Specific</option>
                 <option value="Vegetarian">Vegetarian</option>
@@ -87,8 +66,6 @@ function UserRecipes() {
 
               <select
                 className="dropdown"
-                value={holidays}
-                onChange={(e) => setHolidays(e.target.value)}
               >
                 <option value="">Holidays + Seasonal</option>
                 <option value="Christmas">Christmas</option>
@@ -98,8 +75,6 @@ function UserRecipes() {
 
               <select
                 className="dropdown"
-                value={drinks}
-                onChange={(e) => setDrinks(e.target.value)}
               >
                 <option value="">Drinks</option>
                 <option value="Christmas Drinks">Christmas Drinks</option>
@@ -114,53 +89,25 @@ function UserRecipes() {
 
               <div className="DishCardsWrapper">
 
-                <div className="DishCard">
-                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
-                  <button>Save Recipes</button>
-                  <div className="info">
-                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
-                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
-                  </div>
-                  <p>Spicy Chili Beer Cheese Soup.</p>
-                </div>
-                <div className="DishCard">
-                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
-                  <button>Save Recipes</button>
-                  <div className="info">
-                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
-                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
-                  </div>
-                  <p>Spicy Chili Beer Cheese Soup.</p>
-                </div>
-                <div className="DishCard">
-                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
-                  <button>Save Recipes</button>
-                  <div className="info">
-                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
-                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
-                  </div>
-                  <p>Spicy Chili Beer Cheese Soup.</p>
-                </div>
-                <div className="DishCard">
-                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
-                  <button>Save Recipes</button>
-                  <div className="info">
-                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
-                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
-                  </div>
-                  <p>Spicy Chili Beer Cheese Soup.</p>
-                </div>
-                <div className="DishCard">
-                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
-                  <button>Save Recipes</button>
-                  <div className="info">
-                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
-                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
-                  </div>
-                  <p>Spicy Chili Beer Cheese Soup.</p>
-                </div>
-              </div>
+                {
+                  isLoading ? (
+                    <h1>...Loading</h1>
+                  ) : (
+                    data.map((item) => (
+                      <div className="DishCard" key={item._id}>
+                        <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt={item.name} />
+                        <button>Save Recipes</button>
+                        <div className="info">
+                          <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
+                          <span style={{ opacity: ".8" }}>{item.createdAt}</span>
+                        </div>
+                        <p style={{ fontWeight: "bold", fontSize: "20px" }}>{item.dish}</p>
+                      </div>
+                    ))
+                  )
 
+                }
+              </div>
             </div>
           </div>
         </div>
