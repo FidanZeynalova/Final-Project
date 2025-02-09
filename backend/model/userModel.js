@@ -1,5 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const app = express()
+app.use(express.json())
 
 
 let UsersSchema = new mongoose.Schema({
@@ -8,7 +10,8 @@ let UsersSchema = new mongoose.Schema({
     age:Number,
     email:String,
     password:String,
-    confirmPassword:Number
+    confirmPassword:Number,
+    favorites:[{type:mongoose.Schema.Types.ObjectId,ref:"recipes"}]
     
 })
 

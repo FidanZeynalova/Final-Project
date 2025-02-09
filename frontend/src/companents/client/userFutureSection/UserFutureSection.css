@@ -10,7 +10,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       .CategoryCard {
-        perspective: 1000px;
+        perspective: 100px;
         width: 200px;
         height: 300px;
         border-radius: 15px;
@@ -20,9 +20,9 @@
           position: relative;
           transform-style: preserve-3d;
           transition: transform 0.8s;
-          .text{
+          .text {
             position: absolute;
-            color: #FEFFF4;
+            color: #fefff4;
             background-color: rgba(95, 94, 74, 0.8);
             width: 100%;
             padding: 10px 0;
@@ -50,8 +50,8 @@
     }
   }
 
-   /* Mobil cihazlar (telefonlar) üçün responsiv */
-   @media (max-width: 576px) {
+  /* Mobil cihazlar (telefonlar) üçün responsiv */
+  @media (max-width: 576px) {
     .CategoryCards {
       grid-template-columns: repeat(1, 1fr) !important;
     }
