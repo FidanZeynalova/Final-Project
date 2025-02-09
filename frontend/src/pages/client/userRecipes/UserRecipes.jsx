@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import "../userRecipes/UserRecipes.css";
+import { NavLink } from "react-router-dom"
+import { useGetRecipesQuery } from '../../../redux/Slices/recipesSlices';
 
 function UserRecipes() {
+  let {getRecipes} = useGetRecipesQuery()
+
+
   const [searchValue, setSearchValue] = useState('');
   const [typeOfMeal, setTypeOfMeal] = useState('');
   const [byMethod, setByMethod] = useState('');
@@ -106,7 +111,56 @@ function UserRecipes() {
           <div className="UserRecipesMain">
             <div className="UserRecipesMainContainer">
               <h1>Recipes</h1>
-              
+
+              <div className="DishCardsWrapper">
+
+                <div className="DishCard">
+                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
+                  <button>Save Recipes</button>
+                  <div className="info">
+                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
+                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
+                  </div>
+                  <p>Spicy Chili Beer Cheese Soup.</p>
+                </div>
+                <div className="DishCard">
+                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
+                  <button>Save Recipes</button>
+                  <div className="info">
+                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
+                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
+                  </div>
+                  <p>Spicy Chili Beer Cheese Soup.</p>
+                </div>
+                <div className="DishCard">
+                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
+                  <button>Save Recipes</button>
+                  <div className="info">
+                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
+                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
+                  </div>
+                  <p>Spicy Chili Beer Cheese Soup.</p>
+                </div>
+                <div className="DishCard">
+                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
+                  <button>Save Recipes</button>
+                  <div className="info">
+                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
+                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
+                  </div>
+                  <p>Spicy Chili Beer Cheese Soup.</p>
+                </div>
+                <div className="DishCard">
+                  <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt="" />
+                  <button>Save Recipes</button>
+                  <div className="info">
+                    <span><NavLink to={"/recipes"}>Recipes</NavLink></span>
+                    <span style={{ opacity: ".8" }}>Feburary 3,2025</span>
+                  </div>
+                  <p>Spicy Chili Beer Cheese Soup.</p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

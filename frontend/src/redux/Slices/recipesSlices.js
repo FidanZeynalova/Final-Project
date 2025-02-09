@@ -18,7 +18,7 @@ export const recipesApi = createApi({
         }),
         createRecipe: builder.mutation({
             query: (newRecipe) => ({
-                url: "recipes",
+                url: "recipes/",
                 method: "POST",
                 body: newRecipe,
                 headers: {
@@ -30,9 +30,9 @@ export const recipesApi = createApi({
         }),
         updateRecipe: builder.mutation({
             query: ({ id, updatedRecipe }) => ({
-                url: `recipes/${id}`, 
-                method: 'PUT', 
-                body: updatedRecipe, 
+                url: `recipes/${id}`,
+                method: 'PUT',
+                body: updatedRecipe,
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -42,4 +42,4 @@ export const recipesApi = createApi({
     }),
 })
 
-export const { useGetRecipesQuery, useGetRecipeByIdQuery, useDeleteRecipeByIdMutation, useCreateRecipeMutation ,useUpdateRecipeMutation} = recipesApi
+export const { useGetRecipesQuery, useGetRecipeByIdQuery, useDeleteRecipeByIdMutation, useCreateRecipeMutation, useUpdateRecipeMutation } = recipesApi

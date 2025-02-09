@@ -2,6 +2,7 @@ const joi = require("joi");
 
 const RecipesValidations = joi.object({
     dish: joi.string().min(3).max(100).required(), 
+    category:joi.string().min(3).max(100).required(),
     createdBy: joi.string().min(3).max(50).required(), 
     prepTime: joi.number().integer().positive().min(1).max(180).required(), 
     cookingTime: joi.number().integer().positive().min(1).max(180).required(), 

@@ -3,7 +3,6 @@ import UserDishDetail from "../pages/client/userDishDetail/UserDishDetail";
 import UserFavorites from "../pages/client/userFavorites/UserFavorites";
 import UserHealthierRecipes from "../pages/client/userHealthierRecipes/UserHealthierRecipes";
 import UserLogin from "../pages/client/userLogin/UserLogin";
-import UserRecipes from "../pages/client/userRecipes/userRecipes";
 import UserRoot from "../pages/client/UserRoot";
 import UserSubcribe from "../pages/client/userSubscribe/UserSubcribe";
 import UserNotFound from "../pages/client/userNotFound/UserNotFound";
@@ -18,6 +17,7 @@ import UserCookBook from "../pages/client/UserCookBook/UserCookBook";
 import AdminLogin from "../pages/admin/adminLogin/adminLogin";
 import AdminLoginRoot from "../pages/admin/AdminLoginRoot";
 import AdminPrivacyPolicy from "../pages/admin/adminPrivacyPolicy/AdminPrivacyPolicy";
+import UserRecipes from "../pages/client/userRecipes/UserRecipes";
 
 
 
