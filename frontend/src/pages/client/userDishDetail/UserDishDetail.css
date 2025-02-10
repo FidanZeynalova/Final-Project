@@ -1,0 +1,81 @@
+.UserDishDetail {
+  .UserDishDetailContainer {
+    width: 70%;
+    margin: 130px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+    .dish-chef {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+
+      .info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .text {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+
+      .btns {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        button {
+          padding: 8px 10px;
+        }
+      }
+    }
+
+    .DetailMain {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Sol tərəfə hizala */
+      justify-content: center;
+      gap: 15px;
+      .text {
+        line-height: 1.4;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      img {
+        width: 500px;
+        height: 400px;
+      }
+
+      .ingredients-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Sol tərəfə hizala */
+        background-color: #f7f6f3;
+        padding: 20px;
+        border: 1px solid #e1e1de;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        .ingredients-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start; /* Sol tərəfə hizala */
+        }
+
+        .dish-times {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+      }
+    }
+  }
+}

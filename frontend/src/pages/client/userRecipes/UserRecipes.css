@@ -10,7 +10,6 @@
   }
 
   .UserRecipesSideBar {
-    background-color: white;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -25,7 +24,6 @@
     }
 
     .reset-button {
-      color: #4c4c34;
       border-bottom: 2px solid #4c4c34;
       cursor: pointer;
 
@@ -58,13 +56,12 @@
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
-        background-color: #4c4c34;
         color: white;
         border: none;
         border-radius: 6px;
         cursor: pointer;
         &:hover {
-          background-color: #3c3c2a;
+          opacity: 0.9;
         }
       }
     }
@@ -72,7 +69,7 @@
 
   .UserRecipesMain {
     width: 70%;
-     .UserRecipesMainContainer {
+    .UserRecipesMainContainer {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -86,7 +83,6 @@
       .DishCard {
         width: 100%;
         button {
-          border: 1px solid #3c3c2a46;
           padding: 5px 10px;
           margin: 3px 0;
         }
@@ -95,54 +91,49 @@
           display: flex;
           flex-direction: column;
           gap: 5px;
-          a {
-            color: #3c3c2a;
-            cursor: pointer;
-          }
         }
       }
     }
   }
 }
 
-@media (max-width:576px) {
-  .UserRecipesContainer{
+@media (max-width: 576px) {
+  .UserRecipesContainer {
     flex-direction: column;
   }
-  .UserRecipesSideBar{
+  .UserRecipesSideBar {
     width: 100% !important;
   }
-  .UserRecipesMain{
+  .UserRecipesMain {
     width: 100% !important;
-    .DishCardsWrapper{
-      grid-template-columns: repeat(1,1fr) !important;
+    .DishCardsWrapper {
+      grid-template-columns: repeat(1, 1fr) !important;
     }
   }
-
 }
-  @media (min-width:576px) and (max-width:768px) {
-    .UserRecipesContainer{
-      flex-direction: column;
-    }
-    .UserRecipesSideBar{
-      width: 100% !important;
-    }
-    .UserRecipesMain{
-      width: 100% !important;
-      .DishCardsWrapper{
-        grid-template-columns: repeat(2,1fr) !important;
-      }
+@media (min-width: 576px) and (max-width: 768px) {
+  .UserRecipesContainer {
+    flex-direction: column;
+  }
+  .UserRecipesSideBar {
+    width: 100% !important;
+  }
+  .UserRecipesMain {
+    width: 100% !important;
+    .DishCardsWrapper {
+      grid-template-columns: repeat(2, 1fr) !important;
     }
   }
+}
 
-  @media (min-width:768px) and (max-width:992px) {
-    .UserRecipesSideBar{
-      width: 45% !important;
-    }
-    .UserRecipesMain{
-      width: 55% !important;
-      .DishCardsWrapper{
-        grid-template-columns: repeat(2,1fr) !important;
-      }
+@media (min-width: 768px) and (max-width: 992px) {
+  .UserRecipesSideBar {
+    width: 45% !important;
+  }
+  .UserRecipesMain {
+    width: 55% !important;
+    .DishCardsWrapper {
+      grid-template-columns: repeat(2, 1fr) !important;
     }
   }
+}
