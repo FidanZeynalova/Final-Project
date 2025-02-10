@@ -109,7 +109,7 @@ function UserRecipes() {
                   ) : (
                     data.map((item) => (
                       <div className="DishCard" key={item._id}>
-                        <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt={item.name} />
+                       <NavLink to={`/recipes/${item._id}`}> <img src="https://www.halfbakedharvest.com/wp-content/uploads/2025/02/Spicy-Chili-Beer-Cheese-Soup-1-340x510.jpg" alt={item.name} /></NavLink>
                         <button style={{
                           color: light ? "white" : "#4c4c34",
                           border: light ? "1px solid white" : "1px solid rgba(60, 60, 42, 0.54)"

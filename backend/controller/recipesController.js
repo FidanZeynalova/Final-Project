@@ -13,8 +13,15 @@ const RecipesController = {
             res.status(500).json({ message: "An error occurred!" });
         }
     },
+    getAllChefRecipes: async (req, res) => {
+        let { id } = req.params
+        let recipes = await RecipesModel.find({ chefById: id });
+        if (recipes.length === 0) {
+            return res.status(404).json({ message: "No recipes found for this chef!" });
+        }
+        res.send(recipes);
 
-    // ID ilə resepti tapmaq (GET)
+    },
     getRecipeById: async (req, res) => {
         try {
             let { id } = req.params;
@@ -47,11 +54,11 @@ const RecipesController = {
 
     createRecipe: async (req, res) => {
         try {
-            const { dish, createdBy, prepTime, cookingTime, totalTime, servings, calories, ingredients, instructions, img, rating } = req.body;
+            const { dish, chefById, prepTime, cookingTime, totalTime, servings, calories, ingredients, instructions, img, rating } = req.body;
 
             const newRecipe = new RecipesModel({
                 dish,
-                createdBy,
+                chefById,
                 prepTime,
                 cookingTime,
                 totalTime,
