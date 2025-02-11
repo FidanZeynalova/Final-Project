@@ -21,7 +21,7 @@ function UserCookBook() {
       <div className="UserCookBook" style={{ backgroundColor: light ? "#0f1620" : "#5F5E4A" }}>
         <h1
           style={{
-            backgroundColor: light ? "#0f1620" : "#DDD6C5",
+            backgroundColor: light ? "" : "#DDD6C5",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

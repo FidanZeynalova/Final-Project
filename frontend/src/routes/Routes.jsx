@@ -14,10 +14,11 @@ import AdminUser from "../pages/admin/adminUsers/AdminUser";
 import UserRecipeCollections from "../pages/client/userRecipeCollections/UserRecipeCollections";
 import UserTacosRecipes from "../pages/client/userTacosRecipes/UserTacosRecipes";
 import UserCookBook from "../pages/client/UserCookBook/UserCookBook";
-import AdminLogin from "../pages/admin/adminLogin/adminLogin";
 import AdminLoginRoot from "../pages/admin/AdminLoginRoot";
 import AdminPrivacyPolicy from "../pages/admin/adminPrivacyPolicy/AdminPrivacyPolicy";
 import UserRecipes from "../pages/client/userRecipes/UserRecipes";
+import AdminLogin from "../pages/admin/adminLogin/AdminLogin";
+import LostPassword from "../pages/admin/lostPassword/LostPassword";
 
 
 
@@ -79,12 +80,13 @@ export const ROUTES = [
             {
                 path: "*",
                 element: <UserNotFound />
-            }
+            },
+          
         ]
     },
     {
         path: "/admin/login",
-        element: <AdminRoot/>,
+        element: <AdminRoot />,
         children: [
             {
                 path: "dashboard",
@@ -103,12 +105,16 @@ export const ROUTES = [
     {
         path: "/admin",
         element: <AdminLoginRoot />,
-        children:[
+        children: [
             {
-                path:"",
-                element:<AdminLogin/>
+                path: "",
+                element: <AdminLogin />
+            },
+            {
+                path: "lostpassword",
+                element: <LostPassword />
             }
         ]
     }
-    
+
 ]

@@ -57,22 +57,22 @@ function UserFooter() {
               <div className="direction">
                 <h2>Company</h2>
                 <div className="spans">
-                  <span><NavLink to={"subscribe"}>News Letter</NavLink></span>
-                  <span><NavLink to={"/"}>Half Baked Harvest</NavLink></span>
+                  <span><NavLink to={"subscribe"}  onClick={() => scrollToTop()}>News Letter</NavLink></span>
+                  <span><NavLink to={"/"} onClick={() => scrollToTop()}>Half Baked Harvest</NavLink></span>
                 </div>
               </div>
               <div className="direction">
                 <h2>Explore</h2>
                 <div className="spans">
-                  <span><NavLink to={"/recipes"}>Recipe Index</NavLink></span>
-                  <span><NavLink to={"recipeCollections"}>My Recipes Archieve</NavLink></span>
+                  <span><NavLink to={"/recipes"}onClick={() => scrollToTop()}>Recipe Index</NavLink></span>
+                  <span><NavLink to={"recipeCollections"}  onClick={() => scrollToTop()}>My Recipes Archieve</NavLink></span>
                 </div>
               </div>
               <div className="direction">
                 <h2>Account</h2>
                 <div className="spans">
-                  <span><NavLink to={"/register"}> Create Account </NavLink></span>
-                  <span><NavLink to={"/login"} > Login Account </NavLink></span>
+                  <span><NavLink to={"/register"}  onClick={() => scrollToTop()}> Create Account </NavLink></span>
+                  <span><NavLink to={"/login"}  onClick={() => scrollToTop()}> Login Account </NavLink></span>
                 </div>
               </div>
             </div>
@@ -89,15 +89,17 @@ function UserFooter() {
           </div>
         </div>
       </div>
-      <div className="Footer" style={{ position: "fixed", right: "20px", bottom: "30px",
-        
-         }}>
+      <div className="Footer" style={{
+        position: "fixed", right: "20px", bottom: "30px",
+
+      }}>
         <button
-          style={{ fontSize: "30px", borderRadius: "50%", padding: "10px 15px",
+          style={{
+            fontSize: "30px", borderRadius: "50%", padding: "10px 15px",
             color: light ? "#5F5E4A" : "#FEFFF4",
             backgroundColor: light ? "#FEFFF4" : "#5F5E4A",
-            border : light ? "#5F5E4A" : "#FEFFF4"
-           }}
+            border: light ? "#5F5E4A" : "#FEFFF4"
+          }}
           onClick={scrollToTop}
         >
           <FaAngleDoubleUp />

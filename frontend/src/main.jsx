@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
     <ThemeContextProvider>
       <Provider store={store}>
         <App />
-      </Provider>,
+      </Provider>
     </ThemeContextProvider>
   </RememberMeContextProvider>
 )

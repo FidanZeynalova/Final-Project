@@ -7,7 +7,7 @@ import "../userNavbar/UserNavbar.css"
 
 
 function UserNavbar() {
-    let [isOpen, seIsOpen] = useState(false)
+    let [isOpen, seIsOpen] = useState(false )
     let [menu, setMenu] = useState(false)
     let { light, setLight } = useContext(ThemeContext)
     return (

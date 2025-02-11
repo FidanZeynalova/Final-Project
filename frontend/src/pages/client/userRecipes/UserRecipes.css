@@ -2,7 +2,6 @@
   .UserRecipesContainer {
     position: relative;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     gap: 30px;
     margin: 130px auto;
@@ -14,9 +13,8 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow-y: scroll;
-    height: 400px;
+    height: 430px;
     width: 30%;
-
     .head {
       display: flex;
       justify-content: space-between;
@@ -137,3 +135,21 @@
     }
   }
 }
+/* .loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid lightblue;
+  border-right-color: orange;
+  animation: l2 1s infinite linear;
+  position: absolute;
+  top: 60%;
+  left: 60%;
+
+  transform: translate(-50%, -50%);
+}
+@keyframes l2 {
+  to {
+    transform: rotate(1turn);
+  }
+} */

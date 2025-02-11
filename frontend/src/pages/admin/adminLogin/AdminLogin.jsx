@@ -74,8 +74,8 @@ function AdminLogin() {
                         </div>
                     </form>
         <div className="LoginInfo">
-            <span><NavLink style={{color:"black",opacity:".6"}}> Lost your password?</NavLink></span>
-            <p><NavLink style={{color:"black",opacity:".6"}}>← Go to Half Baked Harvest</NavLink></p>
+            <span><NavLink style={{color:"black",opacity:".6"}} to={'lostpassword'}> Lost your password?</NavLink></span>
+            <p><NavLink style={{color:"black",opacity:".6"}} to={"/"}>← Go to Half Baked Harvest</NavLink></p>
         </div>
 
       

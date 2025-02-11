@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
+import "../adminNavbar/AdminNavbar.css"
 
 function AdminNavbar() {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
-    <div>
-      <h1>adminNavbar</h1>
-    </div>
+    <h1>Admin</h1>
   )
 }
 
 export default AdminNavbar
+

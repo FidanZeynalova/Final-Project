@@ -1,6 +1,6 @@
 :root {
   --bg-color: #fff;
-  --text-color: #000;
+  --text-color: #0f1620;
 }
 
 /* Ümumi tərtibat */
@@ -13,7 +13,7 @@ body {
   font-family: "Times New Roman", Times, serif, sans-serif;
 }
 
-/* Listelementlər */
+/* List elementlər */
 ul {
   list-style: none;
   padding: 0;
