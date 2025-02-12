@@ -23,7 +23,7 @@
           border-bottom: 1px solid #a391613d;
         }
       }
-      .UserLoginForm {
+      form {
         position: relative;
         width: 70%;
         display: flex;

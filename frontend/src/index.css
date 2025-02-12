@@ -1,9 +1,8 @@
 :root {
   --bg-color: #fff;
-  --text-color: #0f1620;
+  --text-color: white;
 }
 
-/* Ümumi tərtibat */
 body {
   margin: 0;
   padding: 0;
@@ -11,6 +10,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Times New Roman", Times, serif, sans-serif;
+  user-select: none;
 }
 
 /* List elementlər */
@@ -28,7 +28,6 @@ li {
 /* linklər */
 a {
   text-decoration: none;
-  transition: all 0.3s ease;
 }
 
 /* Input və button  */
@@ -36,6 +35,8 @@ input,
 button {
   border: none;
   background-color: transparent;
+}
+button {
   cursor: pointer;
 }
 
@@ -43,4 +44,18 @@ button {
 img {
   width: 100%;
   object-fit: cover;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #5f5e4a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
 }

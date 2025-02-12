@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-        user:"fidanhz-af206@code.edu.az",
+        user: "fidanhz-af206@code.edu.az",
         pass: "pbas ewbb vfbx lwtp"
     },
     secure: true,
@@ -42,28 +42,37 @@ let UsersController = {
     },
     // İstifadəçi qeydiyyat
     registerUser: async (req, res) => {
-        const { email, firstName, lastName, age, password } = req.body
+        const { email, firstname, lastname, age, password, confirmpassword } = req.body;
         try {
-            const user = await UsersModel.find({ email: email })
-            if (user.length !== 0) {
-                return res.send({ message: "Bu İstifadəçi artıq mövcuddur" })
-            } else {
-                let hashpassword = await bcrypt.hash(password, 10);
-                let newUser = new UsersModel({
-                    firstName,
-                    lastName,
-                    age,
-                    password: hashpassword,
-                    email
-                })
+            const user = await UsersModel.findOne({ email: email });
 
-                await newUser.save()
-                res.send(newUser)
+            if (user) {  // Əgər istifadəçi tapılıbsa
+                return res.send({ message: "Bu İstifadəçi artıq mövcuddur" });
             }
+            if (password !== confirmpassword) {
+                return res.send({ message: "Parollar uyğun gəlmir!" });
+            }
+
+            // Şifrənin hash-lənməsi
+            let hashpassword = await bcrypt.hash(password, 10);
+
+            // Yeni istifadəçi yaradılır
+            let newUser = new UsersModel({
+                firstname,
+                lastname,
+                age,
+                password: hashpassword,
+                email
+            });
+
+            // Yeni istifadəçi bazaya əlavə olunur
+            await newUser.save();
+            res.send(newUser);
         } catch (error) {
-            res.send({ message: "Daxili Server Xətası", error: error.message })
+            res.send({ message: "Daxili Server Xətası", error: error.message });
         }
     },
+
     loginUser: async (req, res) => {
         let { email, password } = req.body
         try {
@@ -93,7 +102,7 @@ let UsersController = {
         }
     },
     confirmPasswordUser: async (req, res) => {
-        let confirmPassword = req.body.confirmPassword
+        let { confirmPassword } = req.body
         try {
             let user = await UsersModel.findOne({ confirmPassword: confirmPassword })
             if (!user) {

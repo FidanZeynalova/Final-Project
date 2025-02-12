@@ -5,12 +5,13 @@ app.use(express.json())
 
 
 let UsersSchema = new mongoose.Schema({
-    firstName:String,
-    lastName:String,
+    firstname:String,
+    lastname:String,
     age:Number,
     email:String,
     password:String,
-    confirmPassword:Number,
+    confirmpassword:String, //registerden keçərkən yoxlanılan parollar
+    confirmPassword:Number, // emaildən gələn code
     favorites:[{type:mongoose.Schema.Types.ObjectId,ref:"recipes"}]
     
 })

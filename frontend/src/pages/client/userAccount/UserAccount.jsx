@@ -1,20 +1,47 @@
-import React from 'react'
-import "../userAccount/UserAccount.css"
-import { Helmet } from 'react-helmet'
-import { NavLink } from "react-router-dom"
+import React, { useContext, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import "../userAccount/UserAccount.css";
+import { useRegisterUserMutation } from '../../../redux/Slices/userSlices';
+
 
 let schema = yup.object().shape({
-    firstname: yup.string().required(),
-    lastname: yup.string().required(),
-    age: yup.number().required().positive().integer(),
-    email: yup.string().email(),
-    password: yup.number().required().positive().integer(),
-    confirmPassword: yup.number().required().positive().integer(),
+    firstname: yup.string().required("First name is required"),
+    lastname: yup.string().required("Last name is required"),
+    age: yup.number().required("Age is required").positive().integer().min(15, "Minimum age required is 15").max(120, "Maximum age allowed is 120"),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    password: yup.string().required("Please, enter your password.")
+        .trim()
+        .matches(/\S/, "No spaces allowed")
+        .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+            "One uppercase, one lowercase, one number, and one special character required"
+        )
+        .min(8, "Password must be at least 8 characters"),
+    confirmpassword: yup.string()
+        .required("Please confirm your password")
+        .oneOf([yup.ref('password'), null], "Passwords must match"),
 });
 
+
+
+
 function UserAccount() {
+    const [registerUser, { isLoading, error }] = useRegisterUserMutation();
+
+    useEffect(() => {
+        const resetPage = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+        resetPage();
+    }, []);
+
     return (
         <div>
             <Helmet>
@@ -39,11 +66,32 @@ function UserAccount() {
 
                         {/* Formik form */}
                         <Formik
-                            initialValues={{ firstName: '', lastName: '', email: '', password: '', confirmPassword: '', age: '' }}
+                            initialValues={{ firstname: '', lastname: '', email: '', password: '', confirmpassword: '', age: '' }}
                             validationSchema={schema}
-                            onSubmit={(values) => {
-                                console.log(values);
+                            onSubmit={async (values) => {
+                                try {
+                                    await registerUser(values);
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: `Welcome, ${values.firstname}`,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
 
+                                    values.firstname = "";
+                                    values.lastname = "";
+                                    values.email = "";
+                                    values.password = "";
+                                    values.confirmpassword = "";
+                                    values.age = "";
+
+                                } catch (err) {
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Registration Failed",
+                                        text: error.message || "Something went wrong"
+                                    });
+                                }
                             }}
                         >
                             {({ isSubmitting }) => (
@@ -51,28 +99,27 @@ function UserAccount() {
                                     <div className="nameInputs">
                                         {/* First Name */}
                                         <div className="input">
-                                            <label htmlFor="firstName">First Name</label>
-                                            <Field type="text" id="firstName" name="password" />
-                                            <ErrorMessage name="firstName" component="div" style={{ color: 'red' }} />
+                                            <label htmlFor="firstname">First Name</label>
+                                            <Field type="text" id="firstname" name="firstname" />
+                                            <ErrorMessage name="firstname" component="div" style={{ color: 'red' }} />
                                         </div>
-
 
                                         {/* Last Name */}
                                         <div className="input">
-                                            <label htmlFor="lastName">Last Name</label>
-                                            <Field type="text" id="lastName" name="lastName" />
-                                            <ErrorMessage name="lastName" component="div" style={{ color: 'red' }} />
+                                            <label htmlFor="lastname">Last Name</label>
+                                            <Field type="text" id="lastname" name="lastname" />
+                                            <ErrorMessage name="lastname" component="div" style={{ color: 'red' }} />
                                         </div>
                                     </div>
 
-                                    {/* Age */}
+                                    {/* Email */}
                                     <div className="input">
-                                        <label htmlFor="email">Email</label>
+                                        <label htmlFor="email">E-mail</label>
                                         <Field type="email" id="email" name="email" />
                                         <ErrorMessage name="email" component="div" style={{ color: 'red' }} />
                                     </div>
 
-                                    {/* Email */}
+                                    {/* Age */}
                                     <div className="input">
                                         <label htmlFor="age">Age</label>
                                         <Field type="number" id="age" name="age" />
@@ -89,13 +136,13 @@ function UserAccount() {
 
                                         {/* Confirm Password */}
                                         <div className="input">
-                                            <label htmlFor="confirmPassword">Confirm Password</label>
-                                            <Field type="password" id="confirmPassword" name="confirmPassword" />
-                                            <ErrorMessage name="confirmPassword" component="div" style={{ color: 'red' }} />
+                                            <label htmlFor="confirmpassword">Confirm Password</label>
+                                            <Field type="password" id="confirmpassword" name="confirmpassword" />
+                                            <ErrorMessage name="confirmpassword" component="div" style={{ color: 'red' }} />
                                         </div>
                                     </div>
 
-                                    <button type="submit" disabled={isSubmitting}>
+                                    <button type="submit" disabled={isSubmitting || isLoading}>
                                         Register Now
                                     </button>
                                 </Form>
@@ -106,7 +153,6 @@ function UserAccount() {
             </div>
         </div>
     )
-
 }
 
-export default UserAccount
+export default UserAccount;

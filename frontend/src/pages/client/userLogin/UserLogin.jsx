@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import "../userLogin/UserLogin.css"
 import UserMainLogin from '../../../companents/client/UserLoginCompanents/UserMainLogin'
 import UserLostPassword from '../../../companents/client/UserLoginCompanents/UserLostPassword'
 import UserConfirmPassword from '../../../companents/client/UserLoginCompanents/UserConfirmPassword'

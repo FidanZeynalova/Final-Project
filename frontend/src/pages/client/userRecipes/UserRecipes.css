@@ -58,6 +58,9 @@
         border: none;
         border-radius: 6px;
         cursor: pointer;
+        &:focus{
+          outline: none;
+        }
         &:hover {
           opacity: 0.9;
         }
