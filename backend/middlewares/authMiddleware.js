@@ -1,23 +1,26 @@
 const jwt = require('jsonwebtoken');
-const secretKey = "secretKey"
-
+require("dotenv").config()
+const secretKey = process.env.SECRET_KEY;
 
 const AuthMiddleware = (req, res, next) => {
-    const token = req.headers.authorization.split(" ")[1]
+    const token = req.headers.authorization ? req.headers.authorization.split(" ")[1] : null
+    console.log(token);
+
+
     if (!token) {
-        return res.send("Token yoxudr")
-    } else {
-
+        return res.send("Token yoxdur");
     }
 
-    
     try {
-        let decoded = jwt.verify(token, secretKey)
-        req.user = decoded
-        next()
-    } catch (error) {
-        res.send("Token Yalnisdir")
-    }
+        // Tokeni doğrulanır
+        let decoded = jwt.verify(token, secretKey);
+        console.log(decoded);
+        req.user = decoded;
 
+        next();
+    } catch (error) {
+        res.send("Token Yalnışdır");
+    }
 }
-module.exports = AuthMiddleware
+
+module.exports = AuthMiddleware;

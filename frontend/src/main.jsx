@@ -5,8 +5,10 @@ import ThemeContextProvider from './context/ThemeContext.jsx'
 import RememberMeContextProvider from './context/RememberMe.jsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/store.js'
+import LoginUserProvider from './context/LoginUser.jsx'
 
 createRoot(document.getElementById('root')).render(
+ <LoginUserProvider>
   <RememberMeContextProvider>
     <ThemeContextProvider>
       <Provider store={store}>
@@ -14,4 +16,5 @@ createRoot(document.getElementById('root')).render(
       </Provider>
     </ThemeContextProvider>
   </RememberMeContextProvider>
+ </LoginUserProvider>
 )

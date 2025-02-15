@@ -1,0 +1,26 @@
+.AdminRecipes {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+
+  .AdminRecipesContainer {
+    background-color: #fff;
+    width: 89%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto;
+    padding: 20px;
+    border-radius: 10px;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      td,
+      th {
+        border: 1px solid rgba(0, 0, 0, 0.338);
+        padding: 8px;
+      }
+    }
+
+  }
+}

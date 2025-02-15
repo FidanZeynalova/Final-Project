@@ -10,7 +10,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Times New Roman", Times, serif, sans-serif;
-  user-select: none;
+  /* user-select: none; */
 }
 
 /* List elementlər */

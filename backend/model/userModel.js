@@ -1,5 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
+// const { Stream } = require("nodemailer/lib/xoauth2")
 const app = express()
 app.use(express.json())
 
@@ -8,10 +9,15 @@ let UsersSchema = new mongoose.Schema({
     firstname:String,
     lastname:String,
     age:Number,
-    email:String,
+    email: {
+        type: String,
+        required: true,
+        unique: true, 
+        lowercase: true
+    },
     password:String,
     confirmpassword:String, //registerden keçərkən yoxlanılan parollar
-    confirmPassword:Number, // emaildən gələn code
+    confirmPassword:String, // emaildən gələn kod
     favorites:[{type:mongoose.Schema.Types.ObjectId,ref:"recipes"}]
     
 })

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import "../userRecipes/UserRecipes.css";
 import { NavLink } from "react-router-dom"
@@ -8,6 +8,16 @@ import { ThemeContext } from '../../../context/ThemeContext';
 function UserRecipes() {
   let { light } = useContext(ThemeContext)
   let { data, isLoading } = useGetRecipesQuery()
+
+  useEffect(() => {
+        const resetPage = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+        resetPage();
+    }, []);
 
 
 
@@ -51,39 +61,6 @@ function UserRecipes() {
                 <option value="Freezer-Friendly">Freezer-Friendly</option>
                 <option value="Breakfast">Breakfast</option>
               </select>
-              <select
-                className="dropdown" style={{
-                  backgroundColor: light ? "#383d42 " : "#4c4c34"
-                }}
-              >
-                <option value="">Type of Meal</option>
-                <option value="Brunch">Brunch</option>
-                <option value="Easy Bowls">Easy Bowls</option>
-                <option value="Freezer-Friendly">Freezer-Friendly</option>
-                <option value="Breakfast">Breakfast</option>
-              </select>
-              <select
-                className="dropdown" style={{
-                  backgroundColor: light ? "#383d42 " : "#4c4c34"
-                }}
-              >
-                <option value="">Type of Meal</option>
-                <option value="Brunch">Brunch</option>
-                <option value="Easy Bowls">Easy Bowls</option>
-                <option value="Freezer-Friendly">Freezer-Friendly</option>
-                <option value="Breakfast">Breakfast</option>
-              </select>
-              <select
-                className="dropdown" style={{
-                  backgroundColor: light ? "#383d42 " : "#4c4c34"
-                }}
-              >
-                <option value="">Type of Meal</option>
-                <option value="Brunch">Brunch</option>
-                <option value="Easy Bowls">Easy Bowls</option>
-                <option value="Freezer-Friendly">Freezer-Friendly</option>
-                <option value="Breakfast">Breakfast</option>
-              </select>
 
               <select
                 className="dropdown" style={{
@@ -104,6 +81,7 @@ function UserRecipes() {
                 <option value="">Diet Specific</option>
                 <option value="Vegetarian">Vegetarian</option>
                 <option value="Vegan">Vegan</option>
+                <option value="Vegan">Healthiy-ish</option>
                 <option value="Gluten-Free">Gluten-Free</option>
               </select>
 

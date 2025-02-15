@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import "../UserCookBook/UserCookBook.css"
 import CookBook1 from "../../../assets/CookBook1.webp"
@@ -13,6 +13,18 @@ import { ThemeContext } from '../../../context/ThemeContext'
 
 function UserCookBook() {
   let { light } = useContext(ThemeContext)
+
+  useEffect(() => {
+    const resetPage = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }
+    resetPage();
+}, []);
+
+
   return (
     <>
       <Helmet>

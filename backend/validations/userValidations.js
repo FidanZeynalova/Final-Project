@@ -5,7 +5,7 @@ app.use(express.json())
 
 
 const UserValidations = joi.object({
-    firstname: joi.string().min(5).max(50).required(),
+    firstname: joi.string().min(3).max(50).required(),
     lastname: joi.string().min(5).max(50).required(),
     age: joi.number().integer().positive().min(15).max(120).required(),
     email: joi.string().email().required(),

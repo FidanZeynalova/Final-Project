@@ -5,6 +5,7 @@ const dotenv = require("dotenv")
 const userRouter = require("./routes/userRoutes.js")
 const recipesRouter = require("./routes/recipesRoutes.js")
 const chefsRouter = require("./routes/chefRoutes.js")
+const lostPasswordRouter = require("./routes/loginPasswordRoutes.js")
 
 dotenv.config()
 app.use(express.json())
@@ -14,6 +15,7 @@ require("./config/config.js")
 app.use("/users", userRouter)
 app.use("/recipes", recipesRouter)
 app.use("/chefs", chefsRouter)
+app.use("/password", lostPasswordRouter)
 
 
 const PORT = process.env.PORT || 5000

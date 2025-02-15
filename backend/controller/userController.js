@@ -5,14 +5,16 @@ app.use(express.json())
 const bcrypt = require('bcrypt');
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
-const secretKey = "secretKey"
+require("dotenv").config()
+const secretKey = process.env.SECRET_KEY
+
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-        user: "fidanhz-af206@code.edu.az",
-        pass: "pbas ewbb vfbx lwtp"
+        user: process.env.MONGO_USER,
+        pass: process.env.MONGO_PASS
     },
     secure: true,
 });

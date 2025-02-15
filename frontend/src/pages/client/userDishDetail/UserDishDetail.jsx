@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import "../userDishDetail/UserDishDetail.css"
 import { ThemeContext } from '../../../context/ThemeContext';
@@ -9,7 +9,18 @@ function UserDishDetail() {
     let { light } = useContext(ThemeContext)
     let { id } = useParams()
     let { data, isLoading } = useGetRecipeByIdQuery(id)
-    console.log(data);
+    
+    
+    useEffect(() => {
+        const resetPage = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+        resetPage();
+    }, []);
+
 
     return (
         <div>

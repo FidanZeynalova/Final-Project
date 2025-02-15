@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -31,6 +31,7 @@ let schema = yup.object().shape({
 
 function UserAccount() {
     const [registerUser, { isLoading, error }] = useRegisterUserMutation();
+    const navigate = useNavigate()
 
     useEffect(() => {
         const resetPage = () => {
@@ -69,6 +70,8 @@ function UserAccount() {
                             initialValues={{ firstname: '', lastname: '', email: '', password: '', confirmpassword: '', age: '' }}
                             validationSchema={schema}
                             onSubmit={async (values) => {
+                                console.log(values);
+
                                 try {
                                     await registerUser(values);
                                     Swal.fire({
@@ -77,19 +80,20 @@ function UserAccount() {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
+                                    navigate("/login")
 
-                                    values.firstname = "";
-                                    values.lastname = "";
-                                    values.email = "";
-                                    values.password = "";
-                                    values.confirmpassword = "";
-                                    values.age = "";
+                                    // values.firstname = "";
+                                    // values.lastname = "";
+                                    // values.email = "";
+                                    // values.password = "";
+                                    // values.confirmpassword = "";
+                                    // values.age = "";
 
                                 } catch (err) {
                                     Swal.fire({
                                         icon: "error",
                                         title: "Registration Failed",
-                                        text: error.message || "Something went wrong"
+                                        text: err.message || "Something went wrong"
                                     });
                                 }
                             }}

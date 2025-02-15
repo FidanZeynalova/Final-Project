@@ -17,5 +17,48 @@
       display: flex;
       align-items: center;
     }
+    .wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .addButton {
+        border: 1px solid #5f5e4a;
+        border-radius: 20px;
+        button {
+          font-size: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0px auto;
+          transform: rotate(0deg);
+          transition: all 0.4s ease;
+
+          &:hover {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    form {
+      button {
+        background-color: #5f5e4a;
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 10px 30px;
+        color: white;
+      }
+    }
+    .input {
+      width: 80%;
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #5f5e4a;
+        &:focus {
+          outline: none;
+          color: rgb(146, 7, 7);
+        }
+      }
+    }
   }
 }
