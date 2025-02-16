@@ -1,25 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../adminSidebar/AdminSidebar.css"
 import { MdOutlineDashboard } from "react-icons/md";
 import { FcStatistics } from "react-icons/fc";
 import { BiDish } from "react-icons/bi";
 import { IoIosLogOut, IoIosSettings } from "react-icons/io";
-import { FaUsers } from 'react-icons/fa';
+import { FaBars, FaUsers } from 'react-icons/fa';
 import { BsFillMenuButtonWideFill } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 
 function AdminSidebar() {
+    let [isOpen, setIsOpen] = useState(false)
     return (
         <>
             <div className="AdminSidebar">
                 <aside>
                     <div className="sidebarContainer">
                         <div className="head">
-                            <h1>.// Half Baked Harvest</h1>
+                            <h1>./ Half Baked Harvest</h1>
                         </div>
-                        <div className="lists">
+                        <div className="lists" style={{display:"none"}}>
                             <ul>
-                               <NavLink to={""}>  <li><MdOutlineDashboard /> Dashboard</li></NavLink>
+                                <NavLink to={""}><li><MdOutlineDashboard /> Dashboard</li></NavLink>
                                 <li><FcStatistics /> <NavLink>Statistics</NavLink></li>
                                 <NavLink to={"recipes"}>   <li><BiDish />  Dishes</li></NavLink>
                                 <li><BsFillMenuButtonWideFill /><NavLink>Recipes Management</NavLink> </li>
@@ -34,6 +35,7 @@ function AdminSidebar() {
                         </div>
                     </div>
                 </aside>
+                <button><FaBars/></button>
             </div>
         </>
     )

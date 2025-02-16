@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import "../UserLoginCompanents/UserConfirmPassword.css";
-import { LoginUserContext } from '../../../context/LoginUser';
 import axios from 'axios';
 
 const validationSchema = yup.object().shape({
@@ -15,16 +14,14 @@ const validationSchema = yup.object().shape({
 
 function LoginConfirmPassword() {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    let { loginUser, emailCode, setEmailCode } = useContext(LoginUserContext); // Burada emailCode-u alırıq
-
     useEffect(() => {
         const email = loginUser?.userEmail;
-        
+
         if (email) {
             axios.post("http://localhost:5050/users/confirm", { email })
                 .then(response => {
-                    console.log(response.data.confirmPassword);
-                    setEmailCode(response.data.confirmPassword); // Kod kontekstdə saxlanılır
+                    console.log("Göndərilən kod:", response.data.confirmPassword);
+                    setEmailCode(response.data.confirmPassword); 
                 })
                 .catch(error => {
                     console.error("Kod göndərmək mümkün olmadı:", error);
@@ -50,13 +47,27 @@ function LoginConfirmPassword() {
                         initialValues={{ confirmPassword: "" }}
                         validationSchema={validationSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            console.log(values.confirmPassword);
+                            console.log("Daxil edilən kod:", values.confirmPassword);
+
                             if (values.confirmPassword === emailCode) {
-                                alert("✅ Kod doğrudur!");
+                                // Əgər kod doğrudursa, serverdən token almaq üçün request at
+                                axios.post("http://localhost:5050/users/get-token", {
+                                    email: loginUser?.userEmail
+                                })
+                                    .then(response => {
+                                        const { token } = response.data;
+                                        saveToken(token); // Tokeni yadda saxla
+                                        alert("✅ Kod doğrudur! İstifadəçi uğurla daxil oldu.");
+                                    })
+                                    .catch(error => {
+                                        console.error("Token almaq mümkün olmadı:", error);
+                                    });
+
                             } else {
                                 alert("❌ Səhv kod daxil edilib!");
-                                setSubmitting(false);
                             }
+
+                            setSubmitting(false);
                         }}
                     >
                         {({ isSubmitting, values }) => {

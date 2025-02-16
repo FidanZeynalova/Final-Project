@@ -103,7 +103,7 @@ export const ROUTES = [
         ]
     },
     {
-        path: "/admin",
+        path: "/admin/login",
         element: <AdminLoginRoot />,
         children: [
             {

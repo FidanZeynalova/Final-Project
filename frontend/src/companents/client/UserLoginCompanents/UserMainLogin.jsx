@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import "../UserLoginCompanents/UserMainLogin.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -17,7 +17,6 @@ function UserMainLogin({ setPage }) {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     let { setLoginUser } = useContext(LoginUserContext);
     let [userLogin] = useUserLoginMutation();
-    const navigate = useNavigate();
 
     const typeChange = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -44,32 +43,20 @@ function UserMainLogin({ setPage }) {
                         initialValues={{ email: '', password: '' }}
                         validationSchema={validationSchema}
                         onSubmit={async (values, { setSubmitting }) => {
-                            console.log(values);
-
                             try {
                                 const response = await userLogin(values).unwrap();
                                 console.log("Backend cavabı:", response);
 
-                                if (!response.token) {
-                                    throw new Error("Token gəlmədi! ");
-                                }
-
-                                // Tokeni localStorage-a yazırıq
-                                localStorage.setItem("token", response.token);
-                                localStorage.setItem("expiration", response.expiration || "");
-
-                                // Contextə login məlumatlarını göndəririk
-                                if (response.email && response.userId) {
-                                    setLoginUser({
-                                        userEmail: response.email,
-                                        userId: response.userId,
-                                    });
-
-                                    // Uğurlu login olanda yönləndiririk
-                                    navigate("/recipes");
-                                } else {
+                                if (!response.userId || !response.email) {
                                     throw new Error("Login məlumatları natamamdır!");
                                 }
+
+                                setLoginUser({
+                                    userEmail: response.email,
+                                    userId: response.userId,
+                                });
+
+                                setPage("loginConfirmPassword");
 
                             } catch (error) {
                                 console.error("Login xətası:", error.message);
@@ -77,7 +64,7 @@ function UserMainLogin({ setPage }) {
                                 setSubmitting(false);
                             }
                         }}
-                    >
+                    >   
                         {({ isSubmitting }) => (
                             <Form>
                                 <div className="input">
@@ -110,7 +97,7 @@ function UserMainLogin({ setPage }) {
                                     <ErrorMessage name="password" component="div" style={{ color: "red" }} />
                                 </div>
                                 <span>Forgotten your password? <NavLink onClick={() => setPage("forgetPassword")}>Click here</NavLink> to reset it.</span>
-                                <button type="submit" disabled={isSubmitting} onClick={() => setPage("loginConfirmPassword")}>Log In</button>
+                                <button type="submit" disabled={isSubmitting}>Log In</button>
                             </Form>
                         )}
                     </Formik>
