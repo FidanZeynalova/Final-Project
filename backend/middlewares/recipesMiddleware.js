@@ -4,8 +4,7 @@ const RecipesMiddleware = (req, res, next) => {
     try {
         if (!req.file) {
             return res.status(400).json({
-                message: "Please upload an image!"
-
+                message: "Lütfen bir resim yükleyin!"
             });
         }
 
@@ -13,6 +12,10 @@ const RecipesMiddleware = (req, res, next) => {
 
         if (typeof req.body.ingredients === 'string') {
             req.body.ingredients = JSON.parse(req.body.ingredients);
+        }
+
+        if (!req.body.videoUrl) {
+            req.body.videoUrl = null;
         }
 
         req.body.prepTime = Number(req.body.prepTime);
@@ -33,7 +36,7 @@ const RecipesMiddleware = (req, res, next) => {
     } catch (error) {
         console.error("Middleware Error:", error);
         return res.status(400).json({
-            message: "An error occurred during the process",
+            message: "İşlem sırasında hata oluştu",
             error: error.message
         });
     }

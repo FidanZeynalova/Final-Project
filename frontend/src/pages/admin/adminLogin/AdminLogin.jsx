@@ -18,16 +18,23 @@ function AdminLogin() {
         setPasswordVisible(!passwordVisible);
     };
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        login(userInput, rememberMe);
-        Swal.fire({
-            icon: "success",
-            title: `Welcome ${username} Half Baked Harvest`,
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
+        try {
+            const response = await login({ email: userInput, password }).unwrap();
+            if (response.token) {
+                localStorage.setItem('token', response.token);
+                Swal.fire({
+                    icon: "success",
+                    title: `Welcome ${username} Half Baked Harvest`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+        }
+    };
 
     return (
         <>

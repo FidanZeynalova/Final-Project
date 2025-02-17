@@ -1,26 +1,36 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 require("dotenv").config()
 const secretKey = process.env.SECRET_KEY;
 
-const AuthMiddleware = (req, res, next) => {
-    const token = req.headers.authorization ? req.headers.authorization.split(" ")[1] : null
-    console.log(token);
-
-
-    if (!token) {
-        return res.send("Token yoxdur");
-    }
-
+const authMiddleware = (req, res, next) => {
     try {
-        // Tokeni doğrulanır
-        let decoded = jwt.verify(token, secretKey);
-        console.log(decoded);
-        req.user = decoded;
+        // Authorization header'ını kontrol et
+        const authHeader = req.headers.authorization;
+        if (!authHeader) {
+            return res.status(401).json({ message: "Token yok!" });
+        }
 
-        next();
+        // "Bearer " prefix'ini kontrol et ve token'i ayıkla
+        if (!authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ message: "Geçersiz token formatı!" });
+        }
+
+        const token = authHeader.split(' ')[1];
+
+        // Token'i doğrula
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: "Geçersiz token!" });
+            }
+            
+            // Token geçerliyse kullanıcı bilgisini request'e ekle
+            req.user = decoded;
+            next();
+        });
     } catch (error) {
-        res.send("Token Yalnışdır");
+        console.error("Auth Middleware Error:", error);
+        res.status(500).json({ message: "Token doğrulama hatası!" });
     }
-}
+};
 
-module.exports = AuthMiddleware;
+module.exports = authMiddleware;

@@ -21,6 +21,13 @@ function UserDishDetail() {
         resetPage();
     }, []);
 
+    const getVideoId = (url) => {
+        if (!url) return null;
+        // YouTube URL'sinden video ID'sini çıkar
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    };
 
     return (
         <div>
@@ -38,7 +45,7 @@ function UserDishDetail() {
                             </div>
                             <div className="dish-chef">
                                 <div className="info">
-                                    <img src="https://secure.gravatar.com/avatar/49ee4a23a1d5dffb1944da32800bb254?s=48&d=mm&r=pg" alt="" style={{ width: "60px" }} />
+                                    <img src={"https://secure.gravatar.com/avatar/49ee4a23a1d5dffb1944da32800bb254?s=48&d=mm&r=pg"} alt="" style={{ width: "60px" }} />
                                     <div className="text">
                                         <span style={{
                                             color: light ? "white" : "#4C4A35",
@@ -65,18 +72,22 @@ function UserDishDetail() {
                                 <div className="text">
                                     {data.instructions}
                                 </div>
-                                <img src="https://www.halfbakedharvest.com/wp-content/uploads/2024/08/Sheet-Pan-Steak-and-Chipotle-Corn-Tacos-1-scaled.jpg" alt="" />
+                                <img src={data.img} alt={data.dish} style={{width:"400px",height:"400px"}}/>
                                 <div className="videoURL">
-                                    <p style={{ fontWeight: "bold", fontSize: "25px" }}>VIDEOS YOU MAY ALSO LIKE</p>
-                                    <iframe
-                                        width="400"
-                                        height="250"
-                                        src="https://www.youtube.com/embed/fSuRaYaaUR8"
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen>
-                                    </iframe>
-
+                                    <p style={{ fontWeight: "bold", fontSize: "25px" }}>RECIPE VIDEO</p>
+                                    {data.videoUrl ? (
+                                        <iframe
+                                            width="400"
+                                            height="250"
+                                            src={data.videoUrl}
+                                            title={data.dish}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen>
+                                        </iframe>
+                                    ) : (
+                                        <p>No video available for this recipe</p>
+                                    )}
                                 </div>
                                 <div className="ingredients-card" style={{
                                     backgroundColor: light ? "#272a2e" : "#F7F6F3",

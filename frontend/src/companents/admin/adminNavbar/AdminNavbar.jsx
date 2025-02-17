@@ -11,19 +11,28 @@ function AdminNavbar() {
   function handleSubmit(e) {
     e.preventDefault();
 
+    // Token kontrolü
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert("Lütfen önce giriş yapın!");
+        return;
+    }
+
     const formData = new FormData();
     const form = e.target;
 
+    // Form verilerini FormData'ya ekle
     formData.append('img', form.img.files[0]);
     formData.append('dish', form.dish.value);
     formData.append('category', form.category.value);
-    formData.append('cookingTime', parseInt(form.cookingTime.value));
-    formData.append('prepTime', parseInt(form.prepTime.value));
-    formData.append('totalTime', parseInt(form.totalTime.value));
-    formData.append('servings', parseInt(form.servings.value));
-    formData.append('calories', parseInt(form.calories.value));
+    formData.append('cookingTime', form.cookingTime.value);
+    formData.append('prepTime', form.prepTime.value);
+    formData.append('totalTime', form.totalTime.value);
+    formData.append('servings', form.servings.value);
+    formData.append('calories', form.calories.value);
     formData.append('instructions', form.instructions.value);
-    
+    formData.append('videoUrl', form.videoUrl?.value || ''); // videoUrl opsiyonel
+
     const ingredients = form.ingredients.value
         .split(',')
         .map(item => item.trim())
@@ -125,6 +134,14 @@ function AdminNavbar() {
               </div>
               <div className="input">
                 <input type="text" name="ingredients" placeholder="Ingredients (comma separated)" required />
+              </div>
+              <div className="input">
+                <input 
+                  type="text" 
+                  id="videoUrl" 
+                  name="videoUrl"
+                  placeholder="YouTube video URL (örn: https://www.youtube.com/watch?v=...)" 
+                />
               </div>
               <button type='submit'>Add</button>
             </form>

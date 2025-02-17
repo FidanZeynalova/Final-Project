@@ -42,41 +42,45 @@ function AdminRecipes() {
               isLoading ? (
                 <h1>...Loading</h1>
               ) : (
-                data.map((item) => (
-                  <tr key={item._id}>
-                    <td style={{ width: "100px", height: "100px" }}>
-                      <NavLink to={`:${item._id}`}>
-                        <img
-                          src={item.img}
-                          alt={item.dish}
-                          style={{ width: "100px", height: "100px", objectFit: "cover" }}
-                        />
-                      </NavLink>
-                    </td>
-                    <td>{item.dish}</td>
-                    <td>by {item.chefById}</td>
-                    <td>{item.prepTime} minutes </td>
-                    <td>{item.cookingTime} minutes </td>
-                    <td>{item.totalTime} minutes </td>
-                    <td> {item.servings} </td>
-                    <td> {item.calories} kcal </td>
-                    <td> {item.ingredients}  </td>
-                    <td> {item.instructions}  </td>
-                    <td>
-                      <button style={{ fontSize: "25px", border: "1px solid #5f5e4a", borderRadius: "5px", padding: "5px" }}>
-                        <FaEdit style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto" }} />
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        style={{ fontSize: "25px", border: "1px solid #5f5e4a", borderRadius: "5px", padding: "5px" }}
-                        onClick={() => handleDelete(item._id)}
-                      >
-                        <FaDeleteLeft style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto" }} />
-                      </button>
-                    </td>
-                  </tr>
-                ))
+                data.length == 0 ? (
+                  <h2>Dada yoxudr</h2>
+                ) : (
+                  data.map((item) => (
+                    <tr key={item._id}>
+                      <td style={{ width: "100px", height: "100px" }}>
+                        <NavLink to={`${item._id}`}>
+                          <img
+                            src={item.img}
+                            alt={item.dish}
+                            style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                          />
+                        </NavLink>
+                      </td>
+                      <td>{item.dish}</td>
+                      <td>by {item.chefById}</td>
+                      <td>{item.prepTime} minutes </td>
+                      <td>{item.cookingTime} minutes </td>
+                      <td>{item.totalTime} minutes </td>
+                      <td> {item.servings} </td>
+                      <td> {item.calories} kcal </td>
+                      <td> {item.ingredients}  </td>
+                      <td> {item.instructions}  </td>
+                      <td>
+                        <button style={{ fontSize: "25px", border: "1px solid #5f5e4a", borderRadius: "5px", padding: "5px" }}>
+                          <FaEdit style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto" }} />
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          style={{ fontSize: "25px", border: "1px solid #5f5e4a", borderRadius: "5px", padding: "5px" }}
+                          onClick={() => handleDelete(item._id)}
+                        >
+                          <FaDeleteLeft style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0px auto" }} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )
               )
             }
           </table>
