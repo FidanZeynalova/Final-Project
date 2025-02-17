@@ -20,7 +20,7 @@ const RecipesSchema = mongoose.Schema({
     instructions: String,  // Hazırlanma qaydası
     rating: { type: Number, default: 0 },  // Reytinq (0-5 arası)
     videoUrl: String,  // Hazırlanma videosu URL
-    imageUrl: String,  // Yeməyin şəkli URL
+    img: String,  // Yeməyin şəkli URL
     createdAt: { type: Date, default: Date.now }
 });
 

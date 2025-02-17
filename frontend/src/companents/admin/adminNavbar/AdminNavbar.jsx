@@ -11,24 +11,46 @@ function AdminNavbar() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const newRecipe = {
-      dishImage: formData.get("dishImage"),
-      dishName: formData.get("dishName"),
-      dishAuthor: formData.get("dishAuthor"),
-      cookTime: Number(formData.get("cookTime")),
-      prepTime: Number(formData.get("prepTime")),
-      totalTime: Number(formData.get("totalTime")),
-      servings: Number(formData.get("servings")),
-      calories: Number(formData.get("calories")),
-    };
+    const formData = new FormData();
+    const form = e.target;
 
-    createRecipe(newRecipe)
-      .then(() => {
-        refetch();
-        setDisplay(false);
-      })
-      .catch((err) => console.error("Recipe creation failed:", err));
+    formData.append('img', form.img.files[0]);
+    formData.append('dish', form.dish.value);
+    formData.append('category', form.category.value);
+    formData.append('cookingTime', parseInt(form.cookingTime.value));
+    formData.append('prepTime', parseInt(form.prepTime.value));
+    formData.append('totalTime', parseInt(form.totalTime.value));
+    formData.append('servings', parseInt(form.servings.value));
+    formData.append('calories', parseInt(form.calories.value));
+    formData.append('instructions', form.instructions.value);
+    
+    const ingredients = form.ingredients.value
+        .split(',')
+        .map(item => item.trim())
+        .filter(item => item.length > 0);
+    
+    formData.append('ingredients', JSON.stringify(ingredients));
+
+    console.log('Gönderilen veriler:');
+    for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    createRecipe(formData)
+        .then((response) => {
+            console.log('Başarılı:', response);
+            refetch();
+            setDisplay(false);
+            e.target.reset();
+        })
+        .catch((err) => {
+            console.error("Tarif oluşturma hatası:", err);
+            if (err.data && err.data.message) {
+                alert(`Hata: ${err.data.message}`);
+            } else {
+                alert("Tarif eklenirken bir hata oluştu!");
+            }
+        });
   }
 
 
@@ -45,7 +67,7 @@ function AdminNavbar() {
       <div className="AdminNavbar">
         <div className="AdminNavbarContainer">
           <div className="logo">
-            <h2>Welcome,User!</h2>
+            <h2>Welcome,Admin!</h2>
           </div>
           <div className="wrap">
             <div className="addButton" onClick={() => handleDisplay()} >
@@ -72,33 +94,39 @@ function AdminNavbar() {
             <form style={{
               width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
               gap: "10px"
-            }} onSubmit={(e) => handleSubmit(e)}>
+            }} onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
               <h1>Add New Dish</h1>
               <div className="input">
-                <input type="file" placeholder='Dish Image' />
+                <input type="file" name="img" accept="image/*" required />
               </div>
               <div className="input">
-                <input type="text" placeholder='Dish Name' />
+                <input type="text" name="dish" placeholder='Dish Name' required />
               </div>
               <div className="input">
-                <input type="text" placeholder='Dish Author' />
+                <input type="text" name="category" placeholder='Category' required />
               </div>
               <div className="input">
-                <input type="number" placeholder='Cook Time' />
+                <input type="number" name="cookingTime" placeholder='Cook Time' required />
               </div>
               <div className="input">
-                <input type="number" placeholder='Prep Time' />
+                <input type="number" name="prepTime" placeholder='Prep Time' required />
               </div>
               <div className="input">
-                <input type="number" placeholder='Total Time' />
+                <input type="number" name="totalTime" placeholder='Total Time' required />
               </div>
               <div className="input">
-                <input type="number" placeholder='Servings' />
+                <input type="number" name="servings" placeholder='Servings' required />
               </div>
               <div className="input">
-                <input type="number" placeholder='Calories per serving' />
+                <input type="number" name="calories" placeholder='Calories per serving' required />
               </div>
-              <button type='Submit'>Add</button>
+              <div className="input">
+                <textarea name="instructions" placeholder="Cooking Instructions" required></textarea>
+              </div>
+              <div className="input">
+                <input type="text" name="ingredients" placeholder="Ingredients (comma separated)" required />
+              </div>
+              <button type='submit'>Add</button>
             </form>
             <div className="exit" style={{
               position: "fixed", top: "10px", right: "10px", backgroundColor: "rgb(146, 7, 7)", color: 'white', padding: "5px 10px", cursor: "pointer", fontSize: "20px",

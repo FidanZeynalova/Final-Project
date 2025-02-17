@@ -46,14 +46,15 @@ function UserMainLogin({ setPage }) {
                             try {
                                 const response = await userLogin(values).unwrap();
                                 console.log("Backend cavabı:", response);
+                                console.log("Backend cavabı:", response._id);
 
-                                if (!response.userId || !response.email) {
+                                if (!response._id || !response.email) {
                                     throw new Error("Login məlumatları natamamdır!");
                                 }
 
                                 setLoginUser({
                                     userEmail: response.email,
-                                    userId: response.userId,
+                                    userId: response._id,
                                 });
 
                                 setPage("loginConfirmPassword");
@@ -64,7 +65,7 @@ function UserMainLogin({ setPage }) {
                                 setSubmitting(false);
                             }
                         }}
-                    >   
+                    >
                         {({ isSubmitting }) => (
                             <Form>
                                 <div className="input">

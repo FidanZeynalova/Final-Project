@@ -15,7 +15,7 @@ const RecipesValidations = Joi.object({
     instructions: Joi.string().min(10).required(), 
     rating: Joi.number().integer().min(0).max(5), 
     videoUrl: Joi.string().uri().pattern(/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/, 'YouTube URL').required(),  
-    imageUrl: Joi.string().uri().pattern(/^(https?:\/\/).+\.(jpg|jpeg|png|gif)$/, 'Image URL').required() 
+    img: Joi.string().required() 
 });
 
 module.exports = RecipesValidations;

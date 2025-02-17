@@ -54,11 +54,26 @@ const RecipesController = {
 
     createRecipe: async (req, res) => {
         try {
-            const { dish, chefById, prepTime, cookingTime, totalTime, servings, calories, ingredients, instructions, img, rating } = req.body;
+            const { 
+                dish, 
+                category,
+                prepTime, 
+                cookingTime, 
+                totalTime, 
+                servings, 
+                calories, 
+                instructions, 
+                ingredients 
+            } = req.body;
+
+            if (!req.file) {
+                return res.status(400).json({ message: "Please upload an image!" });
+
+            }
 
             const newRecipe = new RecipesModel({
                 dish,
-                chefById,
+                category,
                 prepTime,
                 cookingTime,
                 totalTime,
@@ -66,14 +81,21 @@ const RecipesController = {
                 calories,
                 ingredients,
                 instructions,
-                img,
-                rating
+                img: "http://localhost:5050/upload/" + req.file.filename,
+                rating: 0
             });
 
             await newRecipe.save();
-            res.status(201).json({ message: "New recipe created successfully!", recipe: newRecipe });
+            res.status(201).json({ 
+                message: "The new recipe has been successfully created!",
+                recipe: newRecipe 
+            });
         } catch (error) {
-            res.status(500).json({ message: "An error occurred!" });
+            console.error("Error:", error);
+            res.status(500).json({ 
+                message: "An error occurred!", 
+                error: error.message 
+            });
         }
     },
 

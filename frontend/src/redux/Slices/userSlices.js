@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5050/api',
+        baseUrl: 'http://localhost:5050/',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {

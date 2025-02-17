@@ -6,8 +6,11 @@ const userRouter = require("./routes/userRoutes.js")
 const recipesRouter = require("./routes/recipesRoutes.js")
 const chefsRouter = require("./routes/chefRoutes.js")
 const lostPasswordRouter = require("./routes/loginPasswordRoutes.js")
+const path = require("path")
 
 dotenv.config()
+app.use(express.urlencoded({ extended: true }))
+app.use("/upload", express.static(path.join(__dirname, "upload")))
 app.use(express.json())
 app.use(cors())
 

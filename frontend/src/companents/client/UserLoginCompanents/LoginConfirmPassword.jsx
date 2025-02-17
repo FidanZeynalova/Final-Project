@@ -3,7 +3,10 @@ import { Helmet } from 'react-helmet';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import "../UserLoginCompanents/UserConfirmPassword.css";
-import axios from 'axios';
+import { useConfirmPasswordUserMutation } from '../../../redux/Slices/userSlices';
+// LoginUserContext'i import edin
+import { LoginUserContext } from '../../../context/LoginUser';
+import { useNavigate } from 'react-router';
 
 const validationSchema = yup.object().shape({
     confirmPassword: yup
@@ -14,20 +17,56 @@ const validationSchema = yup.object().shape({
 
 function LoginConfirmPassword() {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const { loginUser, setEmailCode, saveToken, emailCode } = useContext(LoginUserContext);
+    const [confirmPassword] = useConfirmPasswordUserMutation();
+    let navigate = useNavigate()
+
     useEffect(() => {
         const email = loginUser?.userEmail;
 
         if (email) {
-            axios.post("http://localhost:5050/users/confirm", { email })
+            // İlk doğrulama kodu almak için
+            confirmPassword({ email })
+                .unwrap()
                 .then(response => {
-                    console.log("Göndərilən kod:", response.data.confirmPassword);
-                    setEmailCode(response.data.confirmPassword); 
+                    console.log("API Response:", response);
+                    if (response.confirmPassword) {
+                        setEmailCode(response.confirmPassword.toString());
+                    } else {
+                        console.error("Doğrulama kodu alınamadı");
+                    }
                 })
                 .catch(error => {
                     console.error("Kod göndərmək mümkün olmadı:", error);
                 });
         }
-    }, [loginUser, setEmailCode]);
+    }, [loginUser, setEmailCode, confirmPassword]);
+
+    useEffect(() => {
+        console.log("Current emailCode in context:", emailCode);
+    }, [emailCode]);
+
+    const handleSubmit = async (values, { setSubmitting }) => {
+        try {
+            const response = await confirmPassword({
+                email: loginUser?.userEmail,
+                confirmPassword: values.confirmPassword
+            }).unwrap();
+
+            if (response.token) {
+                saveToken(response.token);
+                alert("✅ Kod doğrudur! İstifadəçi uğurla daxil oldu.");
+                navigate("/")
+
+            } else {
+                alert("❌ Səhv kod daxil edilib!");
+            }
+        } catch (error) {
+            console.error("Doğrulama xətası:", error);
+            alert("Doğrulama zamanı xəta baş verdi");
+        }
+        setSubmitting(false);
+    };
 
     return (
         <>
@@ -46,29 +85,7 @@ function LoginConfirmPassword() {
                     <Formik
                         initialValues={{ confirmPassword: "" }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting }) => {
-                            console.log("Daxil edilən kod:", values.confirmPassword);
-
-                            if (values.confirmPassword === emailCode) {
-                                // Əgər kod doğrudursa, serverdən token almaq üçün request at
-                                axios.post("http://localhost:5050/users/get-token", {
-                                    email: loginUser?.userEmail
-                                })
-                                    .then(response => {
-                                        const { token } = response.data;
-                                        saveToken(token); // Tokeni yadda saxla
-                                        alert("✅ Kod doğrudur! İstifadəçi uğurla daxil oldu.");
-                                    })
-                                    .catch(error => {
-                                        console.error("Token almaq mümkün olmadı:", error);
-                                    });
-
-                            } else {
-                                alert("❌ Səhv kod daxil edilib!");
-                            }
-
-                            setSubmitting(false);
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         {({ isSubmitting, values }) => {
                             const isCodeValid = values.confirmPassword.trim().length === 6;
@@ -89,7 +106,7 @@ function LoginConfirmPassword() {
                                             name="confirmPassword"
                                             component="div"
                                             className="error"
-                                            style={{ color: "red" }}
+                                            style={{ color: "red" }}    
                                         />
                                     </div>
 

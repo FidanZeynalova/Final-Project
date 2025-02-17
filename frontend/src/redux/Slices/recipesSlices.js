@@ -17,16 +17,12 @@ export const recipesApi = createApi({
             })
         }),
         createRecipe: builder.mutation({
-            query: (newRecipe) => ({
+            query: (formData) => ({
                 url: "recipes/",
                 method: "POST",
-                body: newRecipe,
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                }
-
-            })
+                body: formData,
+            }),
+            transformErrorResponse: (response) => response.data,
         }),
         updateRecipe: builder.mutation({
             query: ({ id, updatedRecipe }) => ({

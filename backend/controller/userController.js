@@ -35,30 +35,34 @@ let UsersController = {
         try {
             let userById = await UsersModel.findById(id)
             if (!userById) {
-                return res.send({ message: "İstifadəçi tapılmadı" })
+                return res.send({ message: "User not found" });
+
             }
             res.send(userById)
         } catch (error) {
-            res.send({ message: "Daxili Server Xətası", error: error.message })
+            res.send({ message: "Internal Server Error", error: error.message });
+
         }
     },
-    // İstifadəçi qeydiyyat
+    //  qeydiyyat
     registerUser: async (req, res) => {
         const { email, firstname, lastname, age, password, confirmpassword } = req.body;
         try {
             const user = await UsersModel.findOne({ email: email });
 
-            if (user) {  // Əgər istifadəçi tapılıbsa
-                return res.send({ message: "Bu İstifadəçi artıq mövcuddur" });
+            if (user) {
+                return res.send({ message: "This user already exists" });
+
             }
             if (password !== confirmpassword) {
-                return res.send({ message: "Parollar uyğun gəlmir!" });
+                return res.send({ message: "Passwords do not match!" });
+
             }
 
             // Şifrənin hash-lənməsi
             let hashpassword = await bcrypt.hash(password, 10);
 
-            // Yeni istifadəçi yaradılır
+            // Yeni istifadəçi yaradlması
             let newUser = new UsersModel({
                 firstname,
                 lastname,
@@ -67,11 +71,10 @@ let UsersController = {
                 email
             });
 
-            // Yeni istifadəçi bazaya əlavə olunur
             await newUser.save();
             res.send(newUser);
         } catch (error) {
-            res.send({ message: "Daxili Server Xətası", error: error.message });
+            res.send({ message: "Internal Server Error", error: error.message });
         }
     },
 
@@ -80,11 +83,13 @@ let UsersController = {
         try {
             const user = await UsersModel.findOne({ email: email })
             if (!user) {
-                return res.send({ message: "İstifadəçi qeydiyyatdan keçməyib" })
+                return res.send({ message: "User is not registered" });
+
             } else {
                 let isTruePassword = await bcrypt.compare(password, user.password)
                 if (!isTruePassword) {
-                    return res.send({ message: "Şifrə yanlışdır" })
+                    return res.send({ message: "Incorrect password" });
+
                 } else {
                     let confirmCode = Math.floor(100000 + Math.random() * 999999)
                     user.confirmPassword = confirmCode
@@ -100,21 +105,36 @@ let UsersController = {
                 }
             }
         } catch (error) {
-            res.send({ message: "Daxili Server Xətası", error: error.message })
+            res.send({ message: "Internal Server Error", error: error.message });
+
         }
     },
     confirmPasswordUser: async (req, res) => {
-        let { confirmPassword } = req.body
+        let { email, confirmPassword } = req.body;
         try {
-            let user = await UsersModel.findOne({ confirmPassword: confirmPassword })
+            let user = await UsersModel.findOne({ email });
+
             if (!user) {
-                return res.send({ message: "Təsdiq kodu yanlışdır" })
-            } else {
-                let token = jwt.sign({ userId: user._id, email: user.email }, secretKey, { expiresIn: "1h" })
-                res.send(token)
+                return res.status(404).send({ message: "User not found" });
+
             }
+            if (confirmPassword) {
+                if (user.confirmPassword !== confirmPassword) {
+                    return res.status(400).send({ message: "The confirmation code is incorrect" });
+
+                }
+
+                let token = jwt.sign(
+                    { userId: user._id, email: user.email },
+                    secretKey,
+                    { expiresIn: "1h" }
+                );
+                return res.send({ token });
+            }
+            return res.send({ confirmPassword: user.confirmPassword });
         } catch (error) {
-            res.send({ message: "Daxili Server Xətası", error: error.message })
+            res.send({ message: "Internal Server Error", error: error.message });
+
         }
     }
 }
