@@ -1,6 +1,5 @@
 import "./AdminLogin.css"
 import { Helmet } from 'react-helmet'
-import { RememberMeContext } from '../../../context/RememberMe';
 import Swal from "sweetalert2"
 import { NavLink } from 'react-router';
 import { useContext, useState } from "react";
@@ -8,10 +7,7 @@ import { useContext, useState } from "react";
 
 function AdminLogin() {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const { username, login } = useContext
-    (RememberMeContext);
     const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
     const [userInput, setUserInput] = useState(username);
 
     const togglePasswordVisibility = () => {

@@ -4,14 +4,16 @@ import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import { ThemeContext } from '../../../context/ThemeContext';
 import logo from "../../../assets/logo.svg"
 import "../userNavbar/UserNavbar.css"
+import { FavoritesContext } from '../../../context/FavoritesContext';
 
 
 function UserNavbar() {
-    let [isOpen, seIsOpen] = useState(false )
+    let [isOpen, seIsOpen] = useState(false)
     let [menu, setMenu] = useState(false)
     let { light, setLight } = useContext(ThemeContext)
+    let { favRecipes } = useContext(FavoritesContext)
     return (
-        <div className="Navbar" style={{backgroundColor: light ? "#0F1620" : "#fefff4"}}>
+        <div className="Navbar" style={{ backgroundColor: light ? "#0F1620" : "#fefff4" }}>
             <div className="navbarContainer">
                 <div className="navbarLogo">
                     <NavLink to="/" className="navbarLogo">
@@ -48,7 +50,7 @@ function UserNavbar() {
                                             <NavLink to="favorites" style={({ isActive }) => {
                                                 return isActive ? { color: "plum" } : { color: "white" };
                                             }}>
-                                                Favorites()
+                                                Favorites({favRecipes?.length || 0})
                                             </NavLink>
                                         </li>
                                         <li>

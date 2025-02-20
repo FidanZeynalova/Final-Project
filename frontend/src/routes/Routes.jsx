@@ -97,19 +97,19 @@ export const ROUTES = [
             }
         ]
     },
-    {
-        path: "/admin/login",
-        element: <AdminLoginRoot />,
-        children: [
-            {
-                path: "",
-                element: <AdminLogin />
-            },
-            {
-                path: "lostpassword",
-                element: <LostPassword />
-            }
-        ]
-    }
+    // {
+    //     path: "/admin/login",
+    //     element: <AdminLoginRoot />,
+    //     children: [
+    //         {
+    //             path: "",
+    //             element: <AdminLogin />
+    //         },
+    //         {
+    //             path: "lostpassword",
+    //             element: <LostPassword />
+    //         }
+    //     ]
+    // }
 
 ]
