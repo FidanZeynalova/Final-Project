@@ -21,7 +21,6 @@ function AdminSidebar() {
                             <NavLink to={""}><li><MdOutlineDashboard /> Dashboard</li></NavLink>
                             <li><FcStatistics /> <NavLink>Statistics</NavLink></li>
                             <NavLink to={"recipes"}><li><BiDish /> Dishes</li></NavLink>
-                            <li><BsFillMenuButtonWideFill /><NavLink>Recipes Management</NavLink></li>
                             <li><FaUsers /> <NavLink to={"users"}>Users</NavLink></li>
                             <li><IoIosSettings /> <NavLink>Settings</NavLink></li>
                             <li><IoIosLogOut /> Log Out</li>

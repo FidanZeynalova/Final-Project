@@ -9,8 +9,8 @@ function UserDishDetail() {
     let { light } = useContext(ThemeContext)
     let { id } = useParams()
     let { data, isLoading } = useGetRecipeByIdQuery(id)
-    
-    
+
+
     useEffect(() => {
         const resetPage = () => {
             window.scrollTo({
@@ -23,7 +23,6 @@ function UserDishDetail() {
 
     const getVideoId = (url) => {
         if (!url) return null;
-        // YouTube URL'sinden video ID'sini çıkar
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url.match(regExp);
         return (match && match[2].length === 11) ? match[2] : null;
@@ -41,7 +40,7 @@ function UserDishDetail() {
                     ) : (
                         <div className="UserDishDetailContainer">
                             <div className="dish-name" style={{ fontWeight: "bold", fontSize: "35px" }}>
-                               {data.dish}
+                                {data.dish}
                             </div>
                             <div className="dish-chef">
                                 <div className="info">
@@ -72,7 +71,7 @@ function UserDishDetail() {
                                 <div className="text">
                                     {data.instructions}
                                 </div>
-                                <img src={data.img} alt={data.dish} style={{width:"400px",height:"400px"}}/>
+                                <img src={data.img} alt={data.dish} style={{ width: "400px", height: "400px" }} />
                                 <div className="videoURL">
                                     <p style={{ fontWeight: "bold", fontSize: "25px" }}>RECIPE VIDEO</p>
                                     {data.videoUrl ? (

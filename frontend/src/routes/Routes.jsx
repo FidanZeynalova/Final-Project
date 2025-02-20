@@ -4,7 +4,6 @@ import UserFavorites from "../pages/client/userFavorites/UserFavorites";
 import UserHealthierRecipes from "../pages/client/userHealthierRecipes/UserHealthierRecipes";
 import UserLogin from "../pages/client/userLogin/UserLogin";
 import UserRoot from "../pages/client/UserRoot";
-import UserSubcribe from "../pages/client/userSubscribe/UserSubcribe";
 import UserNotFound from "../pages/client/userNotFound/UserNotFound";
 import UserMain from "../pages/client/userMain/UserMain";
 import AdminRoot from "../pages/admin/AdminRoot";
@@ -56,10 +55,6 @@ export const ROUTES = [
             {
                 path: "/login",
                 element: <UserLogin />
-            },
-            {
-                path: "/subscribe",
-                element: <UserSubcribe />
             },
             {
                 path: "/favorites",

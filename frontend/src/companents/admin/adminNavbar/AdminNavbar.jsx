@@ -1,27 +1,26 @@
-import React, { useState } from 'react'
-import "../adminNavbar/AdminNavbar.css"
-import { IoMdAdd } from 'react-icons/io'
-import { useCreateRecipeMutation, useGetRecipesQuery } from '../../../redux/Slices/recipesSlices'
-function AdminNavbar() {
-  let [display, setDisplay] = useState(false)
-  let [createRecipe] = useCreateRecipeMutation()
-  let { refetch } = useGetRecipesQuery()
+import React, { useState } from 'react';
+import "../adminNavbar/AdminNavbar.css";
+import { IoMdAdd } from 'react-icons/io';
+import { useCreateRecipeMutation, useGetRecipesQuery } from '../../../redux/Slices/recipesSlices';
 
+function AdminNavbar() {
+  let [display, setDisplay] = useState(false);
+  let [createRecipe] = useCreateRecipeMutation();
+  let { refetch } = useGetRecipesQuery();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Token kontrolü
+    // Token check
     const token = localStorage.getItem('token');
     if (!token) {
-        alert("Lütfen önce giriş yapın!");
-        return;
+      alert("Please log in first!");
+      return;
     }
 
     const formData = new FormData();
     const form = e.target;
 
-    // Form verilerini FormData'ya ekle
     formData.append('img', form.img.files[0]);
     formData.append('dish', form.dish.value);
     formData.append('category', form.category.value);
@@ -31,44 +30,37 @@ function AdminNavbar() {
     formData.append('servings', form.servings.value);
     formData.append('calories', form.calories.value);
     formData.append('instructions', form.instructions.value);
-    formData.append('videoUrl', form.videoUrl?.value || ''); // videoUrl opsiyonel
+    formData.append('videoUrl', form.videoUrl?.value || ''); 
 
     const ingredients = form.ingredients.value
-        .split(',')
-        .map(item => item.trim())
-        .filter(item => item.length > 0);
-    
+      .split(',')
+      .map(item => item.trim())
+      .filter(item => item.length > 0);
+
     formData.append('ingredients', JSON.stringify(ingredients));
 
-    console.log('Gönderilen veriler:');
+    console.log('Submitted data:');
     for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
+      console.log(pair[0] + ': ' + pair[1]);
     }
 
     createRecipe(formData)
-        .then((response) => {
-            console.log('Başarılı:', response);
-            refetch();
-            setDisplay(false);
-            e.target.reset();
-        })
-        .catch((err) => {
-            console.error("Tarif oluşturma hatası:", err);
-            if (err.data && err.data.message) {
-                alert(`Hata: ${err.data.message}`);
-            } else {
-                alert("Tarif eklenirken bir hata oluştu!");
-            }
-        });
+      .then((response) => {
+        refetch();
+        setDisplay(false);
+        e.target.reset();
+      })
+      .catch((err) => {
+        if (err.data && err.data.message) {
+          alert(`Error: ${err.data.message}`);
+        } else {
+          alert("Error");
+        }
+      });
   }
 
-
   function handleDisplay() {
-    if (display) {
-      setDisplay(false)
-    } else {
-      setDisplay(true)
-    }
+    setDisplay(!display);
   }
 
   return (
@@ -76,10 +68,10 @@ function AdminNavbar() {
       <div className="AdminNavbar">
         <div className="AdminNavbarContainer">
           <div className="logo">
-            <h2>Welcome,Admin!</h2>
+            <h2>Welcome, Admin!</h2>
           </div>
           <div className="wrap">
-            <div className="addButton" onClick={() => handleDisplay()} >
+            <div className="addButton" onClick={handleDisplay}>
               <button><IoMdAdd /></button>
             </div>
             <div className="image">
@@ -103,7 +95,7 @@ function AdminNavbar() {
             <form style={{
               width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
               gap: "10px"
-            }} onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
+            }} onSubmit={handleSubmit} encType="multipart/form-data">
               <h1>Add New Dish</h1>
               <div className="input">
                 <input type="file" name="img" accept="image/*" required />
@@ -162,10 +154,8 @@ function AdminNavbar() {
           }}></div>
         </div>
       </div>
-
     </>
-  )
+  );
 }
 
-export default AdminNavbar
-
+export default AdminNavbar;
