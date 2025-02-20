@@ -10,14 +10,14 @@ function UserRecipes() {
   let { data, isLoading } = useGetRecipesQuery()
 
   useEffect(() => {
-        const resetPage = () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            });
-        }
-        resetPage();
-    }, []);
+    const resetPage = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+    resetPage();
+  }, []);
 
 
 
@@ -129,7 +129,7 @@ function UserRecipes() {
                           <span><NavLink to={"/recipes"} style={{ color: light ? "white" : "#4c4c34 ", cursor: "pointer" }}>Recipes</NavLink></span>
                           <span style={{ opacity: ".8" }}>{item.createdAt}</span>
                         </div>
-                        <p style={{ fontWeight: "bold", fontSize: "20px" }}><NavLink>{item.dish}</NavLink></p>
+                        <p style={{ fontWeight: "bold", fontSize: "20px" }}><NavLink style={{ color: light ? "white" : "black" }} to={`/recipes/${item._id}`}>{item.dish}</NavLink></p>
                       </div>
                     ))
                   )

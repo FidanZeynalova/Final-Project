@@ -84,15 +84,15 @@ export const ROUTES = [
         element: <AdminRoot />,
         children: [
             {
-                path: "",
+                path: "/",
                 element: <AdminDashboard />
             },
             {
-                path: "recipes",
+                path: "/recipes",
                 element: <AdminRecipes />
             },
             {
-                path: "users",
+                path: "/users",
                 element: <AdminUser />
             }
         ]

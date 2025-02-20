@@ -11,7 +11,6 @@ function AdminNavbar() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Token check
     const token = localStorage.getItem('token');
     if (!token) {
       alert("Please log in first!");
@@ -30,7 +29,7 @@ function AdminNavbar() {
     formData.append('servings', form.servings.value);
     formData.append('calories', form.calories.value);
     formData.append('instructions', form.instructions.value);
-    formData.append('videoUrl', form.videoUrl?.value || ''); 
+    formData.append('videoUrl', form.videoUrl?.value || '');
 
     const ingredients = form.ingredients.value
       .split(',')
@@ -68,7 +67,7 @@ function AdminNavbar() {
       <div className="AdminNavbar">
         <div className="AdminNavbarContainer">
           <div className="logo">
-            <h2>Welcome, Admin!</h2>
+            <h2>Welcome, Fidan!</h2>
           </div>
           <div className="wrap">
             <div className="addButton" onClick={handleDisplay}>
@@ -80,6 +79,7 @@ function AdminNavbar() {
           </div>
           <div className="addModal" style={{
             display: display ? "flex" : "none",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             margin: "0px auto",
@@ -89,14 +89,15 @@ function AdminNavbar() {
             left: "50%",
             transform: "translate(-50%,-50%)",
             zIndex: "6",
-            padding: "5px",
+            padding: "40px 10px",
             width: "70%",
+            height: "550px",
+            overflow: "auto"
           }}>
             <form style={{
               width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
               gap: "10px"
-            }} onSubmit={handleSubmit} encType="multipart/form-data">
-              <h1>Add New Dish</h1>
+            }} onSubmit={handleSubmit} encType="multipart/form-data"> 
               <div className="input">
                 <input type="file" name="img" accept="image/*" required />
               </div>
@@ -122,17 +123,17 @@ function AdminNavbar() {
                 <input type="number" name="calories" placeholder='Calories per serving' required />
               </div>
               <div className="input">
-                <textarea name="instructions" placeholder="Cooking Instructions" required></textarea>
+                <textarea name="instructions" placeholder="Cooking Instructions" required style={{ width: '100%', height: '50px', padding: '10px', borderRadius: '8px' }}></textarea>
               </div>
               <div className="input">
                 <input type="text" name="ingredients" placeholder="Ingredients (comma separated)" required />
               </div>
               <div className="input">
-                <input 
-                  type="text" 
-                  id="videoUrl" 
+                <input
+                  type="text"
+                  id="videoUrl"
                   name="videoUrl"
-                  placeholder="YouTube video URL (exp: https://www.youtube.com/watch?v=...)" 
+                  placeholder="YouTube video URL (exp: https://www.youtube.com/watch?v=...)"
                 />
               </div>
               <button type='submit'>Add</button>
