@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 
 function UserFavorites() {
+
+    useEffect(() => {
+        const resetPage = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+        resetPage();
+    }, []);
+
   return (
     <div>
     <Helmet>

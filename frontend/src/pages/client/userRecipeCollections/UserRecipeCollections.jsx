@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../userRecipeCollections/UserRecipeCollection.css";
 import { NavLink } from "react-router-dom";
 import { Helmet } from 'react-helmet';
@@ -6,6 +6,16 @@ import { useGetUsersQuery } from '../../../redux/Slices/userSlices';
 
 function UserRecipeCollections() {
   let { data, isLoading } = useGetUsersQuery();
+
+      useEffect(() => {
+          const resetPage = () => {
+              window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
+              });
+          }
+          resetPage();
+      }, []);
 
   return (
     <>

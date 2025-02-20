@@ -28,9 +28,6 @@ function UserNavbar() {
                         <li><NavLink to="/" style={({ isActive }) => ({
                             color: isActive ? "#5F5E4A" : "var(--text-color)"
                         })}>Home</NavLink></li>
-                        <li><NavLink to="subscribe" style={({ isActive }) => ({
-                            color: isActive ? "#5F5E4A" : "var(--text-color)"
-                        })}>News Letter</NavLink></li>
                         <li><NavLink to="recipeCollections" style={({ isActive }) => ({
                             color: isActive ? "#5F5E4A" : "var(--text-color)"
                         })}>My Recipe Box</NavLink></li>
@@ -51,13 +48,6 @@ function UserNavbar() {
                                                 return isActive ? { color: "plum" } : { color: "white" };
                                             }}>
                                                 Favorites({favRecipes?.length || 0})
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="subscribe" style={({ isActive }) => {
-                                                return isActive ? { color: "plum" } : { color: "white" };
-                                            }}>
-                                                Subscribe
                                             </NavLink>
                                         </li>
                                         <li>
