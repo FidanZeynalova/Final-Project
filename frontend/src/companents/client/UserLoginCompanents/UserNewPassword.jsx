@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import "../UserLoginCompanents/UserNewPassword.css"
 import { ThemeContext } from '../../../context/ThemeContext'
 import * as yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import axios from 'axios';
 
 let schema = yup.object().shape({
     password: yup.string().required(),
@@ -11,7 +12,26 @@ let schema = yup.object().shape({
 });
 
 function UserNewPassword({ setPage }) {
-    let { light } = useContext(ThemeContext)
+    const { light } = useContext(ThemeContext)
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = async (values, { setSubmitting }) => {
+        try {
+            const response = await axios.put('/password/update', {
+                email: userEmail, // Ensure you have the user's email stored somewhere
+                newPassword: values.newPassword
+            });
+            setMessage(response.data.message);
+            if (response.data.message === "Password successfully updated") {
+                setPage("login");
+            }
+        } catch (error) {
+            setMessage('An error occurred. Please try again.');
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
     return (
         <>
             <Helmet>
@@ -22,22 +42,14 @@ function UserNewPassword({ setPage }) {
                     <div className='head' style={{
                         color: light ? "black" : ""
                     }}>
-                        <p>Please enter your new password below. Make sure it’s strong and unique to keep your account secure.
-                            After updating, you’ll be able to log in with your new password.
+                        <p>Please enter your new password below. Make sure it's strong and unique to keep your account secure.
+                            After updating, you'll be able to log in with your new password.
                         </p>
                     </div>
                     <Formik
                         initialValues={{ password: '', newPassword: '' }}
                         validationSchema={schema}
-                        onSubmit={(values, { setSubmitting }) => {
-                            if (values.password == values.newPassword) {
-                                alert("Succes")
-                            } else {
-                                alert("Şifrənilər eyni deyil!")
-                                setSubmitting(false)
-                            }
-
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         {({ isSubmitting }) => (
                             <Form>
@@ -59,6 +71,7 @@ function UserNewPassword({ setPage }) {
                             </Form>
                         )}
                     </Formik>
+                    {message && <p>{message}</p>}
                 </div>
             </div >
 

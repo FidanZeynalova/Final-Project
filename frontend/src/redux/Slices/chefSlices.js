@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const recipesApi = createApi({
-    reducerPath: 'recipesApi',
+export const chefsApi = createApi({
+    reducerPath: 'chefsApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:5050/',
         prepareHeaders: (headers) => {
@@ -13,44 +13,44 @@ export const recipesApi = createApi({
         },
     }),
     endpoints: (builder) => ({
-        getRecipes: builder.query({
-            query: () => "recipes"
+        getChefs: builder.query({
+            query: () => "chefs"
         }),
-        getRecipeById: builder.query({
-            query: (id) => `recipes/${id}`
+        getChefById: builder.query({
+            query: (id) => `chefs/${id}`
         }),
-        createRecipe: builder.mutation({
+        createChef: builder.mutation({
             query: (formData) => ({
-                url: "recipes/",
+                url: "chefs/",
                 method: "POST",
                 body: formData,
             }),
         }),
-        deleteRecipeById: builder.mutation({
+        deleteChefById: builder.mutation({
             query: (id) => ({
-                url: `recipes/${id}`,
+                url: `chefs/${id}`,
                 method: "DELETE",
             })
         }),
-        updateRecipe: builder.mutation({
-            query: ({ id, updatedRecipe }) => ({
-                url: `recipes/${id}`,
+        updateChef: builder.mutation({
+            query: ({ id, updatedChef }) => ({
+                url: `chefs/${id}`,
                 method: 'PUT',
-                body: updatedRecipe,
+                body: updatedChef,
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
             }),
-            invalidatesTags: (result, error, { id }) => [{ type: 'Recipes', id }],
+            invalidatesTags: (result, error, { id }) => [{ type: 'chefs', id }],
         }),
     })
 })
 
 export const {
-    useGetRecipesQuery,
-    useGetRecipeByIdQuery,
-    useCreateRecipeMutation,
-    useDeleteRecipeByIdMutation,
-    useUpdateRecipeMutation
-} = recipesApi
+    useGetChefsQuery,
+    useGetChefByIdQuery,
+    useCreateChefMutation,
+    useDeleteChefByIdMutation,
+    useUpdateChefMutation
+} = chefsApi

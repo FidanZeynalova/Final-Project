@@ -31,7 +31,7 @@ function UserLostPassword({ setPage }) {
                         initialValues={{ email: '' }}
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
-                            console.log(values);
+                            // console.log(values);
                             setPage("confirm")
                             
                         }}

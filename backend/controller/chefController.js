@@ -1,6 +1,7 @@
 const express = require("express")
 const ChefModel = require("../model/chefModel")
 const RecipesModel = require("../model/recipesModel")
+const mongoose = require("mongoose")
 const app = express()
 app.use(express.json())
 
@@ -16,6 +17,9 @@ let ChefController = {
 
     getChefById: async (req, res) => {
         let { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid Chef ID!" });
+        }
         try {
             const chef = await ChefModel.findById(id);
             if (!chef) {
@@ -28,8 +32,13 @@ let ChefController = {
     },
 
     addChef: async (req, res) => {
-        let newChef = new ChefModel(req.body);
         try {
+            const newChefData = {
+                ...req.body,
+                chefImg: req.file ? `http://localhost:5050/upload/${req.file.filename}` : null
+            };
+
+            let newChef = new ChefModel(newChefData);
             await newChef.save();
             res.status(201).json({
                 message: "Successfully added new chef",
@@ -42,6 +51,9 @@ let ChefController = {
 
     deleteChef: async (req, res) => {
         let { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid Chef ID!" });
+        }
         try {
             const deletedChef = await ChefModel.findByIdAndDelete(id);
             if (!deletedChef) {
@@ -57,6 +69,9 @@ let ChefController = {
 
     editChef: async (req, res) => {
         let { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid Chef ID!" });
+        }
         try {
             const editedChef = await ChefModel.findByIdAndUpdate(id, req.body, { new: true });
             if (!editedChef) {

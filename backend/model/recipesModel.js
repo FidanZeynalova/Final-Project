@@ -5,26 +5,25 @@ app.use(express.json());
 
 
 const RecipesSchema = mongoose.Schema({
-    dish: String,  // Yeməyin adı
-    category: String, //Hansı kategoriyadırsa
-    chefById: ({
+    dish: String,
+    category: String, 
+    chefById: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "chefs",
-    }),  // Kim tərəfindən hazırlanıb
-    prepTime: Number,  // Hazırlıq vaxtı (dəqiqə)
-    cookingTime: Number,  // Bişmə vaxtı (dəqiqə)
-    totalTime: Number,  // Ümumi vaxt (dəqiqə)
-    servings: Number,  // Porsiya sayı
-    calories: Number,  // Kalori sayı
-    ingredients: [String],  // Tərkibi (siyahı)
-    instructions: String,  // Hazırlanma qaydası
-    rating: { type: Number, default: 0 },  // Reytinq (0-5 arası)
-    videoUrl: String,  // Hazırlanma videosu URL
-    img: String,  // Yeməyin şəkli URL
+    }, 
+    prepTime: String,  
+    cookingTime: String,  
+    totalTime: String,
+    servings: Number,  
+    calories: Number,  
+    ingredients: [String], 
+    instructions: String,  
+    rating: { type: Number, default: 0 }, 
+    videoUrl: String, 
+    img: String,  
     createdAt: { type: Date, default: Date.now }
 });
 
-// Model yaratmaq
 const RecipesModel = mongoose.model("recipes", RecipesSchema);
 
 module.exports = RecipesModel;

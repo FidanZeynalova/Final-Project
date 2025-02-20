@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { LoginUserContext } from '../../../context/LoginUser';
 import { useUserLoginMutation } from '../../../redux/Slices/userSlices';
+import Swal from 'sweetalert2';
 
 let validationSchema = yup.object().shape({
     email: yup.string().email("Invalid email address").required("Email is required"),
@@ -46,7 +47,6 @@ function UserMainLogin({ setPage }) {
                             try {
                                 const response = await userLogin(values).unwrap();
                                 console.log("Backend cavabı:", response);
-                                console.log("Backend cavabı:", response._id);
 
                                 if (!response._id || !response.email) {
                                     throw new Error("Login məlumatları natamamdır!");
@@ -61,6 +61,11 @@ function UserMainLogin({ setPage }) {
 
                             } catch (error) {
                                 console.error("Login xətası:", error.message);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: error.data?.message || 'An error occurred. Please try again.',
+                                });
                             } finally {
                                 setSubmitting(false);
                             }

@@ -108,6 +108,10 @@ function UserDishDetail() {
                                             </div>
                                             <p className='servings'><span style={{ fontSize: "22px", fontWeight: "bold" }}>Servings:</span><span>{data.servings}</span></p>
                                             <p className='calories'><span style={{ fontSize: "22px", fontWeight: "bold" }}>Calories Per Serving: </span><span>{data.calories} kcal</span></p>
+                                            <h2>Ingredients</h2>
+                                            <span>{data.ingredients}</span>
+                                            <h2>instructions</h2>
+                                            <span>{data.instructions}</span>
                                         </div>
                                     </div>
                                 </div>

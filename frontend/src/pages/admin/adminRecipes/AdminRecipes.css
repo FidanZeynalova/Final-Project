@@ -2,6 +2,7 @@
   position: absolute;
   top: 15%;
   left: 20%;
+  overflow: auto;
 
   .AdminRecipesContainer {
     background-color: #fff;

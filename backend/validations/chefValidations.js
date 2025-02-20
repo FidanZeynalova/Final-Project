@@ -2,9 +2,10 @@ const Joi = require("joi")
 
 
 let ChefValidations = Joi.object({
-    chefFirstName: Joi.string().min(3).max(20).required(),
-    chefLastName: Joi.string().min(3).max(20).required(),
-    chefImg: Joi.string().uri().required(),
+    chefName: Joi.string().min(3).max(20).required(),
+    experience: Joi.number().min(1).max(50).positive().integer().required(),
+    specialty: Joi.string().min(3).max(20).required(),
+    chefImg: Joi.string().required()
 })
 
 module.exports = ChefValidations

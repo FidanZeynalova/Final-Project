@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import "../UserLoginCompanents/UserConfirmPassword.css";
 import { useConfirmPasswordUserMutation } from '../../../redux/Slices/userSlices';
-// LoginUserContext'i import edin
+import Swal from 'sweetalert2';
 import { LoginUserContext } from '../../../context/LoginUser';
 import { useNavigate } from 'react-router';
 
@@ -25,7 +25,6 @@ function LoginConfirmPassword() {
         const email = loginUser?.userEmail;
 
         if (email) {
-            // İlk doğrulama kodu almak için
             confirmPassword({ email })
                 .unwrap()
                 .then(response => {
@@ -33,11 +32,13 @@ function LoginConfirmPassword() {
                     if (response.confirmPassword) {
                         setEmailCode(response.confirmPassword.toString());
                     } else {
-                        console.error("Doğrulama kodu alınamadı");
+                        console.error("Verification code could not be retrieved");
+
                     }
                 })
                 .catch(error => {
-                    console.error("Kod göndərmək mümkün olmadı:", error);
+                    console.error("Failed to send the code:", error);
+
                 });
         }
     }, [loginUser, setEmailCode, confirmPassword]);
@@ -55,15 +56,23 @@ function LoginConfirmPassword() {
 
             if (response.token) {
                 saveToken(response.token);
-                alert("✅ Kod doğrudur! İstifadəçi uğurla daxil oldu.");
+                Swal.fire({
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate("/")
 
             } else {
-                alert("❌ Səhv kod daxil edilib!");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                });
             }
         } catch (error) {
-            console.error("Doğrulama xətası:", error);
-            alert("Doğrulama zamanı xəta baş verdi");
+            console.error("Validation error:", error);
         }
         setSubmitting(false);
     };
@@ -106,7 +115,7 @@ function LoginConfirmPassword() {
                                             name="confirmPassword"
                                             component="div"
                                             className="error"
-                                            style={{ color: "red" }}    
+                                            style={{ color: "red" }}
                                         />
                                     </div>
 

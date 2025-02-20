@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import "../UserLoginCompanents/UserConfirmPassword.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 const validationSchema = yup.object().shape({
     code: yup
@@ -13,7 +14,21 @@ const validationSchema = yup.object().shape({
 
 function UserConfirmPassword({ setPage }) {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const variabledidene = "123456"; // Test üçün 6 rəqəmli kod
+    const [code, setCode] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/password/verify', { email, confirmCode: code });
+            setMessage(response.data.message);
+            if (response.data.message === "Code is correct, you can set a new password") {
+                setPage("newPassword");
+            }
+        } catch (error) {
+            setMessage('An error occurred. Please try again.');
+        }
+    };
 
     return (
         <>
@@ -28,57 +43,25 @@ function UserConfirmPassword({ setPage }) {
                             This is required to set your new password and secure your account.
                         </p>
                     </div>
-
-                    {/* Formik formu */}
-                    <Formik
-                        initialValues={{ code: "" }}
-                        validationSchema={validationSchema} onSubmit={async (values, { setSubmitting }) => {
-                            if (values.code === variabledidene) {
-                                setPage("newPassword"); // Yeni şifrə səhifəsinə keçid
-                            } else {
-                                alert("Incorrect code");
-                                setSubmitting(false);
-                            }
-                        }}
-                    >
-                        {({ isSubmitting, values }) => {
-                            // Buttonu aktiv edib deaktiv etmək üçün kodun uzunluğunu yoxlamag
-                            const isCodeValid = values.code.trim().length === 6;
-                            setIsButtonDisabled(!isCodeValid);
-
-                            return (
-                                <Form>
-                                    {/* Code input */}
-                                    <div className="input">
-                                        <label htmlFor="code">Enter the Code</label>
-                                        <Field
-                                            type="text"
-                                            name="code"
-                                            maxLength={6} // 6 simvolu limitləmək
-                                            pattern="\d*"  // Rəqəm daxil edilməsini üçün
-                                            className="inputField"
-                                        />
-                                        <ErrorMessage
-                                            name="code"
-                                            component="div"
-                                            className="error"
-                                            style={{ color: "red" }}
-                                        />
-                                    </div>
-
-                                    {/* Submit Button */}
-                                    <button
-                                        type="submit"
-                                        disabled={isButtonDisabled || isSubmitting}
-                                        className="submitButton"
-                                        style={{ cursor: isButtonDisabled ? 'not-allowed' : "pointer" }}
-                                    >
-                                        Submit
-                                    </button>
-                                </Form>
-                            );
-                        }}
-                    </Formik>
+                    <form onSubmit={handleSubmit}>
+                        <div className="input">
+                            <label htmlFor="code">Enter the Code</label>
+                            <input
+                                type="text"
+                                name="code"
+                                maxLength={6}
+                                value={code}
+                                onChange={(e) => setCode(e.target.value)}
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            disabled={isButtonDisabled}
+                        >
+                            Submit
+                        </button>
+                    </form>
+                    {message && <p>{message}</p>}
                 </div>
             </div>
         </>

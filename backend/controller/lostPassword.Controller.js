@@ -22,10 +22,10 @@ let UsersLostPasswordController = {
             let user = await UsersModel.findOne({ email: email });
 
             if (!user) {
-                return res.send({ message: "Bu email ilə istifadəçi tapılmadı" });
+                return res.send({ message: "No user found with this email" });
             }
 
-            const confirmCode = Math.floor(100000 + Math.random() * 999999);
+            const confirmCode = Math.floor(100000 + Math.random() * 900000);
 
             const info = await transporter.sendMail({
                 from: '"Fidan Zeynalova 👻" <fidanhz-af206@code.edu.az>',
@@ -38,10 +38,10 @@ let UsersLostPasswordController = {
             user.confirmPassword = confirmCode;
             await user.save();
 
-            res.send({ message: "Təsdiq kodu emailə göndərildi" });
+            res.send({ message: "Confirmation code sent to email" });
 
         } catch (error) {
-            res.send({ message: "Daxili Server Xətası", error: error.message });
+            res.send({ message: "Internal Server Error", error: error.message });
         }
     },
 
@@ -51,14 +51,13 @@ let UsersLostPasswordController = {
             let user = await UsersModel.findOne({ email: email });
 
             if (!user || user.confirmPassword !== confirmCode) {
-                return res.send({ message: "Təsdiq kodu yanlışdır" });
+                return res.send({ message: "Incorrect confirmation code" });
             }
 
-
-            res.send({ message: "Kod düzgün, yeni şifrə təyin edə bilərsiniz" });
+            res.send({ message: "Code is correct, you can set a new password" });
 
         } catch (error) {
-            res.send({ message: "Daxili Server Xətası", error: error.message });
+            res.send({ message: "Internal Server Error", error: error.message });
         }
     },
 
@@ -66,27 +65,20 @@ let UsersLostPasswordController = {
         const { email, newPassword } = req.body;
         try {
             let user = await UsersModel.findOne({ email: email });
-    
+
             if (!user) {
-                return res.status(404).send({ message: "Bu email ilə istifadəçi tapılmadı" });
+                return res.status(404).send({ message: "No user found with this email" });
             }
-    
+
             const hashedPassword = await bcrypt.hash(newPassword, 10);
-    
-            let updatedUser = await UsersModel.findByIdAndUpdate(
-                user._id, 
-                { password: hashedPassword }, 
-                { new: true } 
-            );
-    
-            if (!updatedUser) {
-                return res.status(400).send({ message: "Şifrə yenilənmədi" });
-            }
-    
-            res.send({ message: "Şifrə uğurla yeniləndi" });
+
+            user.password = hashedPassword;
+            await user.save();
+
+            res.send({ message: "Password successfully updated" });
         } catch (error) {
             console.error(error);
-            res.status(500).send({ message: "Daxili Server Xətası", error: error.message });
+            res.status(500).send({ message: "Internal Server Error", error: error.message });
         }
     }
     

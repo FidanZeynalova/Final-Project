@@ -98,7 +98,7 @@ function AdminNavbar() {
             transform: "translate(-50%,-50%)",
             zIndex: "6",
             padding: "5px",
-            width: "70%"
+            width: "70%",
           }}>
             <form style={{
               width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
@@ -115,13 +115,13 @@ function AdminNavbar() {
                 <input type="text" name="category" placeholder='Category' required />
               </div>
               <div className="input">
-                <input type="number" name="cookingTime" placeholder='Cook Time' required />
+                <input type="text" name="cookingTime" placeholder='Cook Time' required />
               </div>
               <div className="input">
-                <input type="number" name="prepTime" placeholder='Prep Time' required />
+                <input type="text" name="prepTime" placeholder='Prep Time' required />
               </div>
               <div className="input">
-                <input type="number" name="totalTime" placeholder='Total Time' required />
+                <input type="text" name="totalTime" placeholder='Total Time' required />
               </div>
               <div className="input">
                 <input type="number" name="servings" placeholder='Servings' required />
@@ -140,7 +140,7 @@ function AdminNavbar() {
                   type="text" 
                   id="videoUrl" 
                   name="videoUrl"
-                  placeholder="YouTube video URL (örn: https://www.youtube.com/watch?v=...)" 
+                  placeholder="YouTube video URL (exp: https://www.youtube.com/watch?v=...)" 
                 />
               </div>
               <button type='submit'>Add</button>

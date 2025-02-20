@@ -1,11 +1,12 @@
 const mongoose = require("mongoose")
 
 let ChefSchema = new mongoose.Schema({
-    chefFirstName:String,
-    chefLastName:String,
-    chefImg:String
+    chefName: String,
+    chefImg: String,
+    experience: Number,
+    specialty: String
 })
 
-let ChefModel = mongoose.model("chefs",ChefSchema)
+let ChefModel = mongoose.model("chefs", ChefSchema)
 
 module.exports = ChefModel

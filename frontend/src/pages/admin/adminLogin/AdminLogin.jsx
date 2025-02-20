@@ -1,4 +1,4 @@
-import "../adminLogin/AdminLogin.css"
+import "./AdminLogin.css"
 import { Helmet } from 'react-helmet'
 import { RememberMeContext } from '../../../context/RememberMe';
 import Swal from "sweetalert2"

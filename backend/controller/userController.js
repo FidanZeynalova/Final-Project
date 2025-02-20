@@ -91,7 +91,7 @@ let UsersController = {
                     return res.send({ message: "Incorrect password" });
 
                 } else {
-                    let confirmCode = Math.floor(100000 + Math.random() * 999999)
+                    const confirmCode = Math.floor(100000 + Math.random() * 900000);
                     user.confirmPassword = confirmCode
                     await user.save()
                     const info = await transporter.sendMail({

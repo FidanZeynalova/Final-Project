@@ -6,14 +6,15 @@ const RecipesValidations = Joi.object({
     img: Joi.string().required(),
     dish: Joi.string().required(),
     category: Joi.string().required(),
-    cookingTime: Joi.number().required(),
-    prepTime: Joi.number().required(),
-    totalTime: Joi.number().required(),
+    cookingTime: Joi.string().required(),
+    prepTime: Joi.string().required(),
+    totalTime: Joi.string().required(),
     servings: Joi.number().required(),
     calories: Joi.number().required(),
     instructions: Joi.string().required(),
     ingredients: Joi.array().items(Joi.string()).required(),
-    videoUrl: Joi.string().allow('', null) // videoUrl opsiyonel olarak ayarlandı
+    videoUrl: Joi.string().allow('', null),
+    chefById: Joi.objectId().required(),
 });
 
 module.exports = RecipesValidations;
