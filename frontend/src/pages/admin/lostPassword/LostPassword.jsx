@@ -43,7 +43,7 @@ function LostPassword() {
           </form>
           {message && <p>{message}</p>}
           <div className="footer">
-            <p><NavLink to={"/admin"} style={{ color: "black", opacity: ".6" }}>← Log In</NavLink></p>
+            <p><NavLink to={"/admin/login"} style={{ color: "black", opacity: ".6" }}>← Log In</NavLink></p>
             <p><NavLink style={{ color: "black", opacity: ".6" }} to={"/"}>← Go to Half Baked Harvest</NavLink></p>
           </div>
         </div>

@@ -8,6 +8,12 @@ import { ThemeContext } from '../../../context/ThemeContext';
 function UserRecipes() {
   let { light } = useContext(ThemeContext)
   let { data, isLoading } = useGetRecipesQuery()
+  const [searchTerm, setSearchTerm] = useState('');
+  const [mealType, setMealType] = useState('');
+  const [method, setMethod] = useState('');
+  const [diet, setDiet] = useState('');
+  const [season, setSeason] = useState('');
+  const [drink, setDrink] = useState('');
 
   useEffect(() => {
     const resetPage = () => {
@@ -19,7 +25,16 @@ function UserRecipes() {
     resetPage();
   }, []);
 
-
+  const filteredRecipes = data?.filter(recipe => {
+    return (
+      (mealType ? recipe.mealType === mealType : true) &&
+      (method ? recipe.method === method : true) &&
+      (diet ? recipe.diet === diet : true) &&
+      (season ? recipe.season === season : true) &&
+      (drink ? recipe.drink === drink : true) &&
+      (recipe.dish.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  });
 
   return (
     <div>
@@ -36,7 +51,14 @@ function UserRecipes() {
           }}  >
             <div className="head" >
               <h1>Filter Recipes</h1>
-              <span className="reset-button" style={{ color: light ? "white" : "#4c4c34" }}>
+              <span className="reset-button" style={{ color: light ? "white" : "#4c4c34" }} onClick={() => {
+                setSearchTerm('');
+                setMealType('');
+                setMethod('');
+                setDiet('');
+                setSeason('');
+                setDrink('');
+              }}>
                 Reset Filters
               </span>
             </div>
@@ -46,6 +68,8 @@ function UserRecipes() {
                 type="text"
                 className="search-input"
                 placeholder="Search Recipes..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
 
@@ -54,6 +78,8 @@ function UserRecipes() {
                 className="dropdown" style={{
                   backgroundColor: light ? "#383d42 " : "#4c4c34"
                 }}
+                value={mealType}
+                onChange={(e) => setMealType(e.target.value)}
               >
                 <option value="">Type of Meal</option>
                 <option value="Brunch">Brunch</option>
@@ -66,6 +92,8 @@ function UserRecipes() {
                 className="dropdown" style={{
                   backgroundColor: light ? "#383d42 " : "#4c4c34"
                 }}
+                value={method}
+                onChange={(e) => setMethod(e.target.value)}
               >
                 <option value="">By Method</option>
                 <option value="Baking">Baking</option>
@@ -77,11 +105,13 @@ function UserRecipes() {
                 className="dropdown" style={{
                   backgroundColor: light ? "#383d42 " : "#4c4c34"
                 }}
+                value={diet}
+                onChange={(e) => setDiet(e.target.value)}
               >
                 <option value="">Diet Specific</option>
                 <option value="Vegetarian">Vegetarian</option>
                 <option value="Vegan">Vegan</option>
-                <option value="Vegan">Healthiy-ish</option>
+                <option value="Healthy-ish">Healthy-ish</option>
                 <option value="Gluten-Free">Gluten-Free</option>
               </select>
 
@@ -89,6 +119,8 @@ function UserRecipes() {
                 className="dropdown" style={{
                   backgroundColor: light ? "#383d42 " : "#4c4c34"
                 }}
+                value={season}
+                onChange={(e) => setSeason(e.target.value)}
               >
                 <option value="">Holidays + Seasonal</option>
                 <option value="Christmas">Christmas</option>
@@ -100,6 +132,8 @@ function UserRecipes() {
                 className="dropdown" style={{
                   backgroundColor: light ? "#383d42 " : "#4c4c34"
                 }}
+                value={drink}
+                onChange={(e) => setDrink(e.target.value)}
               >
                 <option value="">Drinks</option>
                 <option value="Christmas Drinks">Christmas Drinks</option>
@@ -118,7 +152,7 @@ function UserRecipes() {
                   isLoading ? (
                     <div class="loader" ></div>
                   ) : (
-                    data.map((item) => (
+                    filteredRecipes.map((item) => (
                       <div className="DishCard" key={item._id}>
                         <NavLink to={`/recipes/${item._id}`}> <img src={item.img} alt={item.name} /></NavLink>
                         <button style={{

@@ -79,25 +79,12 @@ function AdminNavbar() {
           </div>
           <div className="addModal" style={{
             display: display ? "flex" : "none",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "0px auto",
-            backgroundColor: "white",
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-            zIndex: "6",
-            padding: "40px 10px",
-            width: "70%",
-            height: "550px",
-            overflow: "auto"
+
           }}>
             <form style={{
               width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
               gap: "10px"
-            }} onSubmit={handleSubmit} encType="multipart/form-data"> 
+            }} onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="input">
                 <input type="file" name="img" accept="image/*" required />
               </div>

@@ -76,7 +76,7 @@ export const ROUTES = [
                 path: "*",
                 element: <UserNotFound />
             },
-          
+
         ]
     },
     {
@@ -84,32 +84,33 @@ export const ROUTES = [
         element: <AdminRoot />,
         children: [
             {
-                path: "/",
+                path: "",
                 element: <AdminDashboard />
             },
             {
-                path: "/recipes",
+                path: "recipes",
                 element: <AdminRecipes />
             },
             {
-                path: "/users",
+                path: "users",
                 element: <AdminUser />
-            }
+            },
+
         ]
     },
-    // {
-    //     path: "/admin/login",
-    //     element: <AdminLoginRoot />,
-    //     children: [
-    //         {
-    //             path: "",
-    //             element: <AdminLogin />
-    //         },
-    //         {
-    //             path: "lostpassword",
-    //             element: <LostPassword />
-    //         }
-    //     ]
-    // }
+    {
+        path: "/admin/login",
+        element: <AdminLoginRoot />,
+        children: [
+            {
+                path: "",
+                element: <AdminLogin />
+            },
+            {
+                path: "lostpassword",
+                element: <LostPassword />
+            }
+        ]
+    }
 
 ]

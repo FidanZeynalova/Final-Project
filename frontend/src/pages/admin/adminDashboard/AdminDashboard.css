@@ -48,24 +48,23 @@
     }
   }
   @media (max-width: 576px) {
+   
+  }
+  @media (max-width: 768px) {
     .AdminDashboard {
+      margin-left: 0;
+      padding: 60px 10px;
+    }
+
+    .AdminDashboardContainer {
+      width: 100%;
+    }
+
+    .cards-wrapper {
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
   }
 }
 
-/* Responsivlik üçün
-@media (max-width: 768px) {
-  .AdminDashboard {
-    margin-left: 0;
-    padding: 60px 10px;
 
-    .AdminDashboardContainer {
-      width: 100%;
-      
-      .cards-wrapper {
-        flex-direction: column;
-        gap: 20px;
-      }
-    }
-  }
-} */
