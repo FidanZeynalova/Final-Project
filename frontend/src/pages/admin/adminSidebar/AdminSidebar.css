@@ -1,80 +1,92 @@
 .admin-sidebar {
   position: fixed;
-  top: 10px;
+  top: 0;
   left: 0;
-  width: 20%;
+  width: 250px;
+  height: 90vh;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  background-color: white;
+  background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
-
+  padding: 20px 0;
+  transition: width 0.3s ease;
+  overflow: auto;
   .sidebar-container {
     display: flex;
     flex-direction: column;
     height: 100%;
+  }
 
-    .head {
-      font-size: 20px;
-      color: #5f5e4a;
+  .head {
+    font-size: 24px;
+    color: #343a40;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .nav-list {
+    flex-grow: 1;
+    overflow-y: auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .nav-list {
-      flex-grow: 1;
+    .nav-item {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      color: #495057;
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s;
+      margin-bottom: 10px;
 
-      ul {
-        list-style: none;
-        padding: 0;
-
-        .nav-item {
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          font-size: 18px;
-          color: #333;
-          padding: 12px;
-          border-radius: 10px;
-          transition: 0.3s;
-
-          &:hover {
-            background-color: #5f5e4a;
-            color: #fff;
-          }
-
-          &.logout {
-            color: red;
-          }
-        }
+      &:hover {
+        background-color: #5f5e4a;
+        color: #fff;
       }
-    }
 
-    .footer {
-      padding-top: 15px;
-      border-top: 1px solid #ddd;
-      text-align: center;
-
-      .user-name {
-        font-size: 16px;
-        font-weight: bold;
-      }
-      .user-email {
-        font-size: 14px;
-        color: #777;
+      &.logout {
+        color: #dc3545;
       }
     }
   }
-}
 
-@media (min-width: 576px) and (max-width: 768px) {
-  .admin-sidebar {
-    width: 40%;
+  .footer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  .user-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #343a40;
+  }
+
+  .user-email {
+    font-size: 14px;
+    color: #6c757d;
   }
 }
 
 @media (max-width: 576px) {
   .admin-sidebar {
     width: 100%;
+    height: auto;
+    position: relative;
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    .admin-sidebar {
+      width: 200px !important;
+    }
   }
 }

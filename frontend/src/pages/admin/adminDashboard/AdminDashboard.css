@@ -48,13 +48,18 @@
     }
   }
   @media (max-width: 576px) {
-   
+   .cards-wrapper{
+    grid-template-columns: repeat(1,1fr) !important;
+   }
   }
   @media (max-width: 768px) {
     .AdminDashboard {
       margin-left: 0;
       padding: 60px 10px;
     }
+    .cards-wrapper{
+      grid-template-columns: repeat(2,1fr) !important;
+     }
 
     .AdminDashboardContainer {
       width: 100%;

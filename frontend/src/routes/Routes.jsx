@@ -18,6 +18,8 @@ import AdminPrivacyPolicy from "../pages/admin/adminPrivacyPolicy/AdminPrivacyPo
 import UserRecipes from "../pages/client/userRecipes/UserRecipes";
 import AdminLogin from "../pages/admin/adminLogin/AdminLogin";
 import LostPassword from "../pages/admin/lostPassword/LostPassword";
+import AdminChefs from "../pages/admin/adminChefs/AdminChefs";
+import AdminStatistics from "../pages/admin/adminStatistics/AdminStatistics";
 
 
 
@@ -94,6 +96,14 @@ export const ROUTES = [
             {
                 path: "users",
                 element: <AdminUser />
+            },
+            {
+                path: "chefs",
+                element: <AdminChefs />
+            },
+            {
+                path: "statistics",
+                element: <AdminStatistics />
             },
 
         ]
