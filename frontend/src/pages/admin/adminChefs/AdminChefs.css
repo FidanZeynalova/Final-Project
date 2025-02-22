@@ -1,8 +1,9 @@
-.admin-users {
-  padding: 80px 20px;
+.AdminChefs {
+  /* padding: 80px 50px 0px 300px; */
+  margin-top: 8%;
   margin-left: 20%;
 
-  .admin-users-container {
+  .AdminChefsContainer {
     width: 85%;
     max-width: 1200px;
     margin: 20px auto;
@@ -33,5 +34,10 @@
     border-radius: 50%;
     object-fit: cover;
   }
+  @media (max-width:576px) {
+    .AdminChefs{
+        padding: 80px 50px 0px 30px ;
 
+    }
+  }
 }

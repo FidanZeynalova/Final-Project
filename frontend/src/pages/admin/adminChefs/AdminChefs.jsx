@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGetChefsQuery } from '../../../redux/Slices/chefSlices'
 import { Helmet } from 'react-helmet'
+import "../adminChefs/AdminChefs.css"
 
 function AdminChefs() {
     let { data, isLoading, error } = useGetChefsQuery()
