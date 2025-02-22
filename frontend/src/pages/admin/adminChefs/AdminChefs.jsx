@@ -26,6 +26,7 @@ function AdminChefs() {
                                     <th>Chef Name</th>
                                     <th>Experience</th>
                                     <th>Specialty</th>
+                                    <th>Chef Image</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,6 +36,7 @@ function AdminChefs() {
                                         <td>{item.chefName}</td>
                                         <td>{item.experience}</td>
                                         <td>{item.specialty}</td>
+                                        <td className='profile-pic'><img src="https://is.gd/oXqMAt " alt="" /></td>
                                     </tr>
                                 ))}
                             </tbody>

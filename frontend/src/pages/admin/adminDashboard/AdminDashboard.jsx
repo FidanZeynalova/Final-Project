@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useGetUsersQuery } from '../../../redux/Slices/userSlices';
 import { useGetRecipesQuery } from '../../../redux/Slices/recipesSlices';
 import { useGetChefsQuery } from '../../../redux/Slices/chefSlices';
+import { NavLink } from "react-router-dom"
 import "../adminDashboard/AdminDashboard.css";
 
 function AdminDashboard() {
@@ -21,20 +22,16 @@ function AdminDashboard() {
       <div className="AdminDashboardContainer">
         <div className="cards-wrapper">
           <div className="card">
-            <span className="card-title">Users Count:</span>
+            <span className="card-title"><NavLink to={"/admin/users"} style={{color:"black"}}>Users Count:</NavLink></span>
             <span className="card-value">{users?.length || 0}</span>
           </div>
           <div className="card">
-            <span className="card-title">Recipes Count:</span>
+            <span className="card-title"><NavLink to={"/admin/recipes"} style={{color:"black"}}>Recipes Count:</NavLink></span>
             <span className="card-value">{recipes?.length || 0}</span>
           </div>
-          <div className="card">
-            <span className="card-title">Chefs Count:</span>
+          <div className="card"> 
+            <span className="card-title"><NavLink to={"/admin/chefs"} style={{color:"black"}}>Chefs Count:</NavLink></span>
             <span className="card-value">{chefs?.length || 0}</span>
-          </div>
-          <div className="card">
-            <span className="card-title">Total Dishes:</span>
-            <span className="card-value">{recipes?.length || 0}</span>
           </div>
         </div>
       </div>

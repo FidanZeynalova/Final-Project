@@ -1,14 +1,16 @@
 import "./AdminLogin.css";
 import { Helmet } from 'react-helmet';
 import Swal from "sweetalert2";
-import { NavLink } from 'react-router-dom';  // Corrected import
+import { NavLink, useNavigate } from 'react-router-dom';  
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function AdminLogin() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [password, setPassword] = useState('');
-    const [userInput, setUserInput] = useState('');  // Added state for userInput
-    const [rememberMe, setRememberMe] = useState(false);  // Added state for rememberMe
+    const [userInput, setUserInput] = useState(''); 
+    const [rememberMe, setRememberMe] = useState(false);  
+    let navigate = useNavigate()
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -16,21 +18,13 @@ function AdminLogin() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            // You should replace 'login' with your actual login API call function
-            const response = await login({ email: userInput, password }).unwrap(); 
-            if (response.token) {
-                localStorage.setItem('token', response.token);
                 Swal.fire({
                     icon: "success",
                     title: `Welcome to Half Baked Harvest`,
                     showConfirmButton: false,
                     timer: 1500
                 });
-            }
-        } catch (error) {
-            console.error('Login error:', error);
-        }
+                navigate("/admin")
     };
 
     return (
@@ -66,7 +60,7 @@ function AdminLogin() {
                                     className="togglePassword"
                                     onClick={togglePasswordVisibility}
                                 >
-                                    {passwordVisible ? '🙈' : '👁️'}
+                                    {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Burada React Iconları istifadə olunur */}
                                 </button>
                             </div>
                         </div>
